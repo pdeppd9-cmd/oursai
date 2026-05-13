@@ -16,11 +16,11 @@ const dailyContents = [
       "고민과 의심은 하면 할수록 깊어진다. 하게 될 것들은 결국 하게 되고, 멀어질 것들은 붙잡아도 새어 나간다.",
     talkTopic: "요즘 별 이유 없이 계속 생각나는 사람이 있어?",
     talkTip:
-      "이 질문은 가볍게 던져도 대답에서 감정 상태가 바로 보임. 장난처럼 시작해서 진심으로 들어가기 좋음.",
+      "장난처럼 던져도 상대 감정 상태가 바로 보이는 질문이야.",
     song: "Laufey - From The Start",
     youtubeId: "lSD_L-xic9o",
     songReason:
-      "설레는데 너무 들뜨진 않아서, 오늘처럼 마음이 괜히 간질거리는 날에 잘 맞음.",
+      "설레는데 과하지 않아서, 사주 읽으면서 틀어두기 좋음.",
   },
   {
     mood: "정리해야 하는 날",
@@ -28,11 +28,11 @@ const dailyContents = [
       "붙잡는다고 다 인연은 아니다. 애매하게 잡고 있는 마음이 제일 오래 사람을 지치게 한다.",
     talkTopic: "너는 사람한테 정 떨어지는 순간이 뭐야?",
     talkTip:
-      "뻔한 이상형 질문보다 훨씬 재밌음. 상대의 선, 예민한 포인트, 인간관계 기준이 바로 나옴.",
+      "뻔한 이상형 질문보다 훨씬 재밌고, 상대 기준이 바로 나와.",
     song: "아이유 - Love wins all",
     youtubeId: "JleoAppaxi0",
     songReason:
-      "감정선이 깊어서 혼자 생각 정리하면서 보기 좋음. 오늘 흐름이랑 꽤 잘 맞음.",
+      "감정선이 깊어서 혼자 생각 정리하면서 보기 좋음.",
   },
   {
     mood: "관계운 강함",
@@ -40,11 +40,11 @@ const dailyContents = [
       "기회는 거창하게 오지 않는다. 오늘 답장을 한 번 더 하게 되는 식으로 온다.",
     talkTopic: "처음엔 별로였는데 갑자기 좋아진 사람 있어?",
     talkTip:
-      "썸 분위기에서 던지면 은근 반응 좋음. 상대가 연애에서 어떤 순간에 흔들리는지도 보임.",
+      "썸 분위기에서 던지면 은근 반응 좋은 질문.",
     song: "NewJeans - Ditto",
     youtubeId: "pSUydWEqKwE",
     songReason:
-      "괜히 누군가 생각나고, 과거 감정이 말랑하게 올라오는 분위기.",
+      "괜히 누군가 생각나고, 마음이 말랑해지는 노래.",
   },
   {
     mood: "감정이 앞서는 날",
@@ -52,11 +52,11 @@ const dailyContents = [
       "상대가 헷갈리게 한다면, 사실 너는 이미 답을 알고 있을 가능성이 높다.",
     talkTopic: "너는 서운하면 바로 말해, 아니면 혼자 정리해?",
     talkTip:
-      "상대의 회피 성향, 표현 방식, 싸움 스타일이 자연스럽게 나오는 질문.",
+      "상대의 회피 성향, 표현 방식, 싸움 스타일이 자연스럽게 나와.",
     song: "The Weeknd - Out of Time",
     youtubeId: "2fDzCWNS3ig",
     songReason:
-      "후회, 타이밍, 미련이 섞여 있어서 오늘처럼 감정이 앞서는 날에 잘 맞음.",
+      "후회, 타이밍, 미련이 섞여 있어서 감정 읽기 좋음.",
   },
 ];
 
@@ -111,11 +111,9 @@ export default function App() {
       ...item,
       message:
         `오늘 ${solo.name || "너"}는 사람 마음을 평소보다 더 예민하게 읽는 날이야. 근데 이게 좋은 쪽으로만 작동하는 건 아님. 상대가 별생각 없이 한 말도 너는 두 번, 세 번 곱씹을 수 있어. 그래서 오늘은 **상대 마음을 맞히려고 하면 할수록 더 피곤해지는 날**이야.\n\n` +
-        `특히 연락 문제 조심해야 함. 답장이 늦거나 말투가 짧으면 바로 의미 부여하고 싶어질 수 있는데, 오늘은 그걸 그대로 믿으면 안 돼. 오늘 네 감정은 약간 확대경 같아서 작은 신호도 크게 보일 수 있음. 그러니까 오늘은 상대를 추리하지 말고, **내가 왜 이 말에 흔들렸는지**를 먼저 봐야 해.\n\n` +
-        `그리고 오늘은 누군가에게 마음을 다 보여주기 좋은 날은 아니야. 오히려 가볍게 던지고 반응을 보는 쪽이 훨씬 좋음. 길게 설명하고, 마음 증명하고, 상대 반응 기다리는 흐름으로 가면 너만 지칠 가능성이 큼. 오늘은 말 많이 하는 사람이 이기는 날이 아니라 **덜 흔들리는 사람이 이기는 날**이야.\n\n` +
-        `일이나 공부 쪽도 비슷해. 오늘은 큰 결정을 내리기보다 작은 정리를 하는 게 맞아. 밀린 연락 정리, 캡처해둔 것 정리, 마음 불편했던 사람과의 거리 조절 같은 것들. 작은 걸 정리하면 생각보다 기분이 많이 가벼워질 수 있어.\n\n` +
+        `특히 연락 문제 조심해야 함. 답장이 늦거나 말투가 짧으면 바로 의미 부여하고 싶어질 수 있는데, 오늘은 그걸 그대로 믿으면 안 돼. 오늘 네 감정은 약간 확대경 같아서 작은 신호도 크게 보일 수 있음.\n\n` +
         `연애나 인간관계에서는 오늘 괜히 쿨한 척하지 마. 근데 그렇다고 너무 진심을 쏟아내지도 마. 딱 중간. **가볍게, 짧게, 하지만 도망가지는 않게.** 이게 오늘 제일 좋은 태도야.\n\n` +
-        `결론은 이거야. 오늘은 뭔가를 잡으려고 애쓸수록 손에서 빠져나갈 수 있음. 반대로 내 리듬을 지키면 이상하게 상대가 다시 보이거나, 상황이 정리되는 흐름이 생길 수 있어. 그러니까 오늘은 제발 감정으로 달리지 말고, 거북이처럼 가. 느린데 안 무너지는 쪽이 결국 이김.`,
+        `결론은 이거야. 오늘은 뭔가를 잡으려고 애쓸수록 손에서 빠져나갈 수 있음. 반대로 내 리듬을 지키면 이상하게 상대가 다시 보이거나, 상황이 정리되는 흐름이 생길 수 있어. 그러니까 오늘은 감정으로 달리지 말고, 거북이처럼 가. 느린데 안 무너지는 쪽이 결국 이김.`,
     };
   }, [solo]);
 
@@ -145,7 +143,13 @@ export default function App() {
   const loadSoloPerson = (name) => {
     const p = savedPeople.find((x) => x.name === name);
     if (!p) return;
-    setSolo({ name: p.name, year: p.year, month: p.month, day: p.day, mbti: p.mbti });
+    setSolo({
+      name: p.name,
+      year: p.year,
+      month: p.month,
+      day: p.day,
+      mbti: p.mbti,
+    });
   };
 
   const loadCouplePerson = (target, name) => {
@@ -239,19 +243,37 @@ export default function App() {
   };
 
   const shareResult = async () => {
-    const url = window.location.href;
-    const text = "우리 사이에서 궁합 봤는데 거북이가 너무 세게 말함 🐢💛";
-
-    if (navigator.share) {
-      await navigator.share({
-        title: "우리 사이",
-        text,
-        url,
-      });
-    } else {
-      await navigator.clipboard.writeText(url);
-      alert("링크 복사했어!");
+    if (!window.Kakao) {
+      alert("카카오 공유 준비 중이야. 새로고침 후 다시 눌러줘.");
+      return;
     }
+
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init("392f84c5486937d26780349c72b4a1d8");
+    }
+
+    window.Kakao.Share.sendDefault({
+      objectType: "feed",
+      content: {
+        title: "우리 사이 🐢💛",
+        description: "거북이가 봐주는 관계 궁합. 귀여운데 말은 생각보다 맵다.",
+        imageUrl:
+          "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?q=80&w=1200&auto=format&fit=crop",
+        link: {
+          mobileWebUrl: "https://oursai.vercel.app",
+          webUrl: "https://oursai.vercel.app",
+        },
+      },
+      buttons: [
+        {
+          title: "궁합 보러가기 💌",
+          link: {
+            mobileWebUrl: "https://oursai.vercel.app",
+            webUrl: "https://oursai.vercel.app",
+          },
+        },
+      ],
+    });
   };
 
   if (mode === "solo") {
@@ -261,6 +283,7 @@ export default function App() {
         <Hero
           title={"오늘 너의 흐름,\n거북이가 봐줄게"}
           subtitle="한 번 입력하면 저장돼서 다음엔 바로 선택할 수 있어."
+          compact
         />
 
         <Card>
@@ -271,7 +294,7 @@ export default function App() {
           <label style={styles.label}>이름</label>
           <input
             style={styles.input}
-            placeholder="예: 우혁"
+            placeholder="이름을 입력해줘"
             value={solo.name}
             onChange={(e) => setSolo({ ...solo, name: e.target.value })}
           />
@@ -327,7 +350,7 @@ export default function App() {
           />
 
           <button style={styles.subButton} onClick={shareResult}>
-            결과 공유하기
+            카카오톡으로 공유하기 💛
           </button>
 
           <button style={styles.mainButton} onClick={() => setMode("couple")}>
@@ -344,8 +367,9 @@ export default function App() {
         <TopBar onBack={() => setMode("home")} />
 
         <Hero
-          title={"너희 사이,\n거북이가 까놓고 봐줄게"}
-          subtitle="귀엽게 생겼지만 말은 좀 세게 할 수 있음."
+          title={"너희 사이,\n얼마나 특별할까?"}
+          subtitle="생년월일, MBTI, 처음 만난 달로 둘 사이의 궁합을 분석해줄게."
+          compact
         />
 
         <Card>
@@ -360,7 +384,7 @@ export default function App() {
           <label style={styles.label}>내 이름</label>
           <input
             style={styles.input}
-            placeholder="예: 우혁"
+            placeholder="이름을 입력해줘"
             value={couple.myName}
             onChange={(e) => setCouple({ ...couple, myName: e.target.value })}
           />
@@ -389,7 +413,7 @@ export default function App() {
           <label style={styles.label}>상대 이름</label>
           <input
             style={styles.input}
-            placeholder="예: 수아"
+            placeholder="상대 이름을 입력해줘"
             value={couple.partnerName}
             onChange={(e) => setCouple({ ...couple, partnerName: e.target.value })}
           />
@@ -462,7 +486,7 @@ export default function App() {
 
           <h1 style={styles.bigTitle}>{coupleResult.title}</h1>
 
-          <ScoreBox score={coupleResult.score} text={coupleResult.turtle.text} label="총 궁합" />
+          <ScoreBox score={coupleResult.score} text={coupleResult.turtle.text} label="궁합 점수" />
 
           <ScoreList
             love={coupleResult.love}
@@ -485,7 +509,7 @@ export default function App() {
           </button>
 
           <button style={styles.subButton} onClick={shareResult}>
-            결과 공유하기
+            카카오톡으로 공유하기 💛
           </button>
         </Card>
 
@@ -496,30 +520,36 @@ export default function App() {
 
   return (
     <Page>
+      <div style={styles.topNav}>
+        <span style={styles.navIcon}>☰</span>
+        <Badge>우리 사이 ❤</Badge>
+      </div>
+
       <Hero
-        title={"우리 사이,\n오늘은 어떨까?"}
-        subtitle="귀여운 거북이가 봐주는데, 말은 생각보다 매움."
+        title={"너희 사이,\n얼마나 특별할까?"}
+        subtitle="생년월일, MBTI, 처음 만난 날로 둘 사이의 흐름을 분석해줄게!"
       />
 
-      <div style={styles.turtleHome}>
-        <div style={styles.turtleShell}>🐢</div>
-        <div style={styles.bubble}>귀엽게 말하지만 봐주는 건 없음!</div>
+      <div style={styles.turtleHero}>
+        <div style={styles.cloudLeft} />
+        <div style={styles.cloudRight} />
+        <div style={styles.mainTurtle}>🐢💗</div>
       </div>
 
       <Card>
-        <button style={styles.menuButton} onClick={() => setMode("solo")}>
-          <span style={styles.menuEmoji}>☀️</span>
-          <div>
-            <b>혼자 매일 보기</b>
-            <p>오늘의 흐름 + 노래 + 조언 + 대화주제 · 무료</p>
-          </div>
-        </button>
-
         <button style={styles.menuButton} onClick={() => setMode("couple")}>
           <span style={styles.menuEmoji}>💌</span>
           <div>
             <b>우리 사이 궁합 보기</b>
             <p>MBTI, 생년월일, 처음 만난 달 반영</p>
+          </div>
+        </button>
+
+        <button style={styles.menuButton} onClick={() => setMode("solo")}>
+          <span style={styles.menuEmoji}>☀️</span>
+          <div>
+            <b>혼자 매일 보기</b>
+            <p>오늘의 흐름 + 노래 + 조언 + 대화주제 · 무료</p>
           </div>
         </button>
       </Card>
@@ -530,17 +560,16 @@ export default function App() {
 function Page({ children }) {
   return (
     <div style={styles.page}>
-      <div style={styles.glowOne} />
-      <div style={styles.glowTwo} />
+      <div style={styles.softLightOne} />
+      <div style={styles.softLightTwo} />
       <div style={styles.container}>{children}</div>
     </div>
   );
 }
 
-function Hero({ title, subtitle }) {
+function Hero({ title, subtitle, compact }) {
   return (
-    <div style={styles.hero}>
-      <Badge>우리 사이 🐢💛</Badge>
+    <div style={compact ? styles.heroCompact : styles.hero}>
       <h1 style={styles.title}>{title}</h1>
       <p style={styles.subtitle}>{subtitle}</p>
     </div>
@@ -626,8 +655,8 @@ function SelectInput({ label, value, onChange }) {
 function Turtle({ face, speech }) {
   return (
     <div style={styles.turtleWrap}>
-      <div style={styles.speech}>{speech}</div>
       <div style={styles.turtle}>{face}</div>
+      <div style={styles.speech}>{speech}</div>
     </div>
   );
 }
@@ -659,8 +688,15 @@ function ScoreBox({ score, text, label }) {
       <p style={styles.scoreLabel}>{label}</p>
       <h2 style={styles.score}>{score}%</h2>
       <p style={styles.scoreText}>{text}</p>
+
       <div style={styles.barBg}>
         <div style={{ ...styles.bar, width: `${score}%` }} />
+      </div>
+
+      <div style={styles.barGuide}>
+        <span>0%</span>
+        <span>50%</span>
+        <span>100%</span>
       </div>
     </div>
   );
@@ -668,22 +704,22 @@ function ScoreBox({ score, text, label }) {
 
 function ScoreList({ love, talk, mood, future }) {
   const rows = [
-    ["💘", "사랑 궁합", "끌림, 애정표현, 설렘의 강도", love],
-    ["💬", "대화 궁합", "말투, 연락, 서운함을 푸는 방식", talk],
-    ["✨", "성향 궁합", "생활 리듬, 가치관, 감정 처리 방식", mood],
-    ["🐢", "미래 궁합", "오래 갈 가능성과 현실적인 안정감", future],
+    ["💘", "사랑 궁합", "서로에게 끌리는 강도", love, "#ff5c5c"],
+    ["💬", "대화 궁합", "대화가 잘 통하는 정도", talk, "#4b8cff"],
+    ["✨", "성향 궁합", "성격과 가치관의 조화", mood, "#78b82a"],
+    ["🐢", "미래 궁합", "함께할 미래의 가능성", future, "#3b82f6"],
   ];
 
   return (
     <div style={styles.scoreList}>
-      {rows.map(([icon, label, desc, value]) => (
+      {rows.map(([icon, label, desc, value, color]) => (
         <div style={styles.scoreRow} key={label}>
           <span style={styles.scoreIcon}>{icon}</span>
           <div>
             <b>{label}</b>
             <p>{desc}</p>
           </div>
-          <strong>{value}%</strong>
+          <strong style={{ color }}>{value}%</strong>
         </div>
       ))}
     </div>
@@ -732,15 +768,10 @@ function PayModal({ onClose }) {
       <div style={styles.modal}>
         <h2>전체 상세 분석 · 990원</h2>
         <p>
-          실제 결제 연결 전 임시 화면이야. 다음 단계에서 토스페이먼츠나 포트원 연결하면
-          이 버튼들이 진짜 결제로 바뀜.
+          지금은 결제창 UI까지 연결된 상태야. 다음 단계에서 카카오페이 단건결제 API를 붙이면 실제 결제가 가능해져.
         </p>
 
-        <button style={styles.payChoice} onClick={() => alert("다음 단계에서 토스페이먼츠 연결")}>
-          토스페이로 결제하기
-        </button>
-
-        <button style={styles.payChoice} onClick={() => alert("다음 단계에서 카카오페이 연결")}>
+        <button style={styles.payChoice} onClick={() => alert("다음 단계에서 카카오페이 API 연결")}>
           카카오페이로 결제하기
         </button>
 
@@ -764,12 +795,12 @@ function clamp(n) {
 }
 
 function getTurtle(score) {
-  if (score >= 100) return { face: "🐢🤯💖", speech: "야 이건 거의 운명인데?!", text: "이 정도면 그냥 넘기기 어려운 조합!" };
-  if (score >= 90) return { face: "🐢😍", speech: "눈에 하트 떴다!", text: "서로한테 끌리는 힘이 꽤 미쳤음!" };
-  if (score >= 80) return { face: "🐢😲", speech: "와 잠깐만!", text: "생각보다 훨씬 잘 맞는 조합!" };
-  if (score >= 70) return { face: "🐢😊", speech: "오 괜찮은데?", text: "좋은데 조율 못 하면 삐끗함!" };
-  if (score >= 60) return { face: "🐢😐", speech: "음... 애매한데?", text: "끌림은 있는데 피곤한 포인트도 큼!" };
-  return { face: "🐢😵", speech: "야 이건 조심!", text: "초반 끌림만 믿으면 다칠 수 있음!" };
+  if (score >= 100) return { face: "🐢🤯💖", speech: "이건 거의 운명!" };
+  if (score >= 90) return { face: "🐢😍", speech: "눈에 하트!" };
+  if (score >= 80) return { face: "🐢😲", speech: "와아!" };
+  if (score >= 70) return { face: "🐢😊", speech: "괜찮은데?" };
+  if (score >= 60) return { face: "🐢😐", speech: "음..." };
+  return { face: "🐢😵", speech: "조심해!" };
 }
 
 function getTitle(score) {
@@ -798,29 +829,29 @@ function makeLongResult(score, months, relation) {
 
     main: strong
       ? `와 이건 그냥 평범하게 “괜찮네?” 하고 넘길 조합이 아니야! 처음부터 묘하게 신경 쓰이고, 상대 말투 하나가 계속 머리에 남는 타입이야. 근데 문제는 이게 순한 궁합이 아니라는 거! **좋을 땐 확 좋고, 서운할 땐 진짜 확 서운해지는 조합**이라 감정선이 꽤 세게 움직여.\n\n${relation} 관계라면 더 조심해야 함. 애매하게 굴면 설레는 게 아니라 사람 미치게 만들 수 있어!`
-      : `솔직히 말하면 이 조합은 막 편하게 흘러가는 관계는 아니야. 처음엔 “뭐지? 은근 신경 쓰이네?” 할 수 있는데, 가까워질수록 생각보다 피곤한 포인트가 빨리 보일 수 있음. **관계 속도, 표현 방식, 기대치** 이 세 개가 안 맞으면 바로 삐끗해.\n\n근데 또 이상하게 아예 끊기는 조합도 아니라 더 골치 아픔!`,
+      : `솔직히 말하면 이 조합은 막 편하게 흘러가는 관계는 아니야. 처음엔 “뭐지? 은근 신경 쓰이네?” 할 수 있는데, 가까워질수록 생각보다 피곤한 포인트가 빨리 보일 수 있음. **관계 속도, 표현 방식, 기대치** 이 세 개가 안 맞으면 바로 삐끗해.`,
 
     love: strong
-      ? "💘 한 줄 요약: **끌림은 강한데, 표현 안 하면 서로 오해함!**\n\n사랑 궁합은 꽤 좋게 나왔어! 둘 사이에 설렘이 생기면 되게 빨리 커지는 편이야. 문제는 한쪽은 티를 내고 싶고, 한쪽은 괜히 숨기거나 간 보는 식으로 갈 수 있다는 거야. 이러면 진짜 아깝게 꼬임! 좋아하면 티 좀 내야 돼."
-      : "💘 한 줄 요약: **끌리긴 하는데, 감정 소모도 같이 따라옴!**\n\n사랑 궁합은 신경 쓰이다가 점점 감정이 커지는 쪽이야. 근데 문제는 감정 확인을 너무 자주 하게 될 수 있다는 거! 상대 반응 하나에 기분이 흔들리면 설렘이 아니라 피로가 될 수 있음.",
+      ? "💘 한 줄 요약: **끌림은 강한데, 표현 안 하면 서로 오해함!**\n\n사랑 궁합은 꽤 좋게 나왔어! 둘 사이에 설렘이 생기면 되게 빨리 커지는 편이야. 문제는 한쪽은 티를 내고 싶고, 한쪽은 괜히 숨기거나 간 보는 식으로 갈 수 있다는 거야. 이러면 진짜 아깝게 꼬임!"
+      : "💘 한 줄 요약: **끌리긴 하는데, 감정 소모도 같이 따라옴!**\n\n사랑 궁합은 신경 쓰이다가 점점 감정이 커지는 쪽이야. 근데 문제는 감정 확인을 너무 자주 하게 될 수 있다는 거!",
 
     talk: strong
       ? "💬 한 줄 요약: **대화 터지면 밤새는데, 삐지면 둘 다 말 안 함!**\n\n대화 궁합은 재밌는 편이야. 잘 맞는 날엔 진짜 시간 순삭임! 근데 싸울 때가 문제야. 한쪽은 바로 풀고 싶고, 한쪽은 혼자 정리해야 하면 여기서 크게 부딪혀."
-      : "💬 한 줄 요약: **말투 하나로 분위기 뒤집힐 수 있음!**\n\n대화 궁합은 조금 조심해야 돼. 이 조합은 말 자체보다 말의 온도에 예민해질 수 있어. 단답, 늦은 답장, 읽씹 같은 거에서 감정이 바로 흔들릴 수 있음.",
+      : "💬 한 줄 요약: **말투 하나로 분위기 뒤집힐 수 있음!**\n\n대화 궁합은 조금 조심해야 돼. 단답, 늦은 답장, 읽씹 같은 거에서 감정이 바로 흔들릴 수 있음.",
 
     mood: strong
-      ? "✨ 한 줄 요약: **다른데, 그 다름이 매력으로 보일 수 있음!**\n\n성향 궁합은 꽤 흥미로워. 둘이 완전 똑같아서 편한 느낌은 아니고, 오히려 달라서 끌리는 쪽에 가까움. 한 명은 분위기를 띄우고, 한 명은 중심을 잡아주는 식으로 맞으면 좋음."
-      : "✨ 한 줄 요약: **다른 점이 매력일 수도, 스트레스일 수도 있음!**\n\n성향 차이가 꽤 느껴질 수 있어. 처음엔 신선한데, 시간이 지나면 ‘왜 저렇게 하지?’가 될 수 있음. 특히 연락 텀, 약속 방식, 감정 표현에서 차이가 나면 오래 쌓임.",
+      ? "✨ 한 줄 요약: **다른데, 그 다름이 매력으로 보일 수 있음!**\n\n성향 궁합은 꽤 흥미로워. 둘이 완전 똑같아서 편한 느낌은 아니고, 오히려 달라서 끌리는 쪽에 가까움."
+      : "✨ 한 줄 요약: **다른 점이 매력일 수도, 스트레스일 수도 있음!**\n\n성향 차이가 꽤 느껴질 수 있어. 처음엔 신선한데, 시간이 지나면 ‘왜 저렇게 하지?’가 될 수 있음.",
 
     future: strong
-      ? "🐢 한 줄 요약: **오래 가려면 자존심보다 솔직함이 먼저!**\n\n미래 궁합은 가능성 있어! 근데 자연스럽게 술술 흘러가는 관계는 아니야. 서로 차이를 알고 맞추면 강해지는 조합임. 애매하게 숨기는 거 금지!"
-      : "🐢 한 줄 요약: **오래 가려면 감정 게임부터 멈춰야 함!**\n\n미래 궁합은 관리가 필요해. 밀당이 길어지면 설레는 게 아니라 지치는 쪽으로 갈 가능성이 큼. 누가 더 좋아하냐 싸움 들어가면 답 없음.",
+      ? "🐢 한 줄 요약: **오래 가려면 자존심보다 솔직함이 먼저!**\n\n미래 궁합은 가능성 있어! 근데 자연스럽게 술술 흘러가는 관계는 아니야. 서로 차이를 알고 맞추면 강해지는 조합임."
+      : "🐢 한 줄 요약: **오래 가려면 감정 게임부터 멈춰야 함!**\n\n미래 궁합은 관리가 필요해. 밀당이 길어지면 설레는 게 아니라 지치는 쪽으로 갈 가능성이 큼.",
 
-    time: `⏰ 처음 만난 지 약 **${months}개월** 정도 됐어!\n\n이 기간이면 첫인상에서 생긴 환상은 조금씩 빠지고, 진짜 성향 차이가 보이기 시작하는 구간이야. 만난 지 얼마 안 됐다면 아직 설렘이 더 크고, 6개월 이상이라면 이제 연락, 말투, 약속 방식에서 현실적인 차이가 드러나기 쉬움.`,
+    time: `⏰ 처음 만난 지 약 **${months}개월** 정도 됐어!\n\n이 기간이면 첫인상에서 생긴 환상은 조금씩 빠지고, 진짜 성향 차이가 보이기 시작하는 구간이야. 지금부터 태도 진짜 중요함!`,
 
     final: strong
-      ? "✅ 결론: **이 조합은 끝까지 갈 수도 있음!** 근데 그냥 두면 잘 되는 관계는 아니고, 서로 다름을 인정해야 오래 감. 좋아하는 마음 있는데 자존심 때문에 표현 아끼면 진짜 아깝게 틀어질 수 있어!"
-      : "✅ 결론: **끌림은 있는데 조심해야 함!** 이 관계는 좋을 때는 좋지만, 애매하게 굴면 감정 소모가 커질 수 있어. 상대 반응 하나에 네 하루가 흔들린다면, 관계 방식 자체를 다시 봐야 함!",
+      ? "✅ 결론: **이 조합은 끝까지 갈 수도 있음!** 근데 그냥 두면 잘 되는 관계는 아니고, 서로 다름을 인정해야 오래 감."
+      : "✅ 결론: **끌림은 있는데 조심해야 함!** 상대 반응 하나에 네 하루가 흔들린다면, 관계 방식 자체를 다시 봐야 함!",
   };
 }
 
@@ -829,230 +860,251 @@ const styles = {
     minHeight: "100vh",
     position: "relative",
     overflow: "hidden",
-    background:
-      "linear-gradient(135deg, #fff8d8 0%, #ffe779 32%, #f8c948 58%, #fff4b8 100%)",
-    fontFamily:
-      "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
-    color: "#111111",
-    padding: "20px 14px",
+    background: "linear-gradient(180deg, #fff8b8 0%, #fff1a4 40%, #fffdf1 100%)",
+    fontFamily: "Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
+    color: "#261300",
+    padding: "18px 14px 32px",
   },
-  glowOne: {
+  softLightOne: {
     position: "fixed",
-    width: "320px",
-    height: "320px",
+    width: 280,
+    height: 280,
     borderRadius: "50%",
-    background: "rgba(255,255,255,0.45)",
-    top: "-90px",
-    left: "-100px",
-    filter: "blur(8px)",
+    background: "rgba(255,255,255,0.55)",
+    top: 110,
+    left: -80,
+    filter: "blur(10px)",
   },
-  glowTwo: {
+  softLightTwo: {
     position: "fixed",
-    width: "260px",
-    height: "260px",
+    width: 240,
+    height: 240,
     borderRadius: "50%",
-    background: "rgba(255,255,255,0.35)",
-    bottom: "40px",
-    right: "-80px",
+    background: "rgba(255,255,255,0.5)",
+    top: 260,
+    right: -70,
     filter: "blur(10px)",
   },
   container: {
     position: "relative",
     zIndex: 2,
-    maxWidth: "520px",
+    maxWidth: 520,
     margin: "0 auto",
   },
+  topNav: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "4px 6px 12px",
+  },
+  navIcon: {
+    fontSize: 24,
+    fontWeight: 900,
+  },
   hero: {
-    padding: "24px 6px 18px",
     textAlign: "center",
+    padding: "12px 4px 0",
+  },
+  heroCompact: {
+    textAlign: "center",
+    padding: "8px 4px 20px",
   },
   badge: {
     display: "inline-block",
     margin: 0,
-    padding: "9px 16px",
-    borderRadius: "999px",
-    background: "rgba(255,255,255,0.88)",
-    border: "2px solid #111111",
-    boxShadow: "0 6px 0 #111111",
+    padding: "8px 16px",
+    borderRadius: 999,
+    background: "rgba(255,255,255,0.92)",
+    color: "#261300",
     fontWeight: 900,
-    color: "#111111",
+    boxShadow: "0 8px 25px rgba(120,80,0,0.13)",
   },
   title: {
     whiteSpace: "pre-line",
-    fontSize: "38px",
+    fontSize: 34,
     lineHeight: 1.15,
-    letterSpacing: "-1.5px",
-    margin: "24px 0 12px",
-    color: "#111111",
+    letterSpacing: "-1.4px",
+    margin: "22px 0 12px",
+    color: "#3a1d00",
+    fontWeight: 950,
   },
   subtitle: {
-    fontSize: "16px",
+    fontSize: 16,
     lineHeight: 1.6,
-    color: "#111111",
+    color: "#3a1d00",
     margin: 0,
-    fontWeight: 800,
+    fontWeight: 700,
   },
-  turtleHome: {
+  turtleHero: {
+    position: "relative",
+    height: 164,
     textAlign: "center",
-    margin: "8px 0 22px",
+    marginTop: 8,
   },
-  turtleShell: {
-    fontSize: "88px",
-    filter: "drop-shadow(0 10px 0 rgba(17,17,17,0.2))",
+  mainTurtle: {
+    position: "relative",
+    zIndex: 2,
+    fontSize: 96,
+    paddingTop: 28,
+    filter: "drop-shadow(0 12px 20px rgba(80,60,0,0.18))",
   },
-  bubble: {
-    display: "inline-block",
-    background: "white",
-    border: "2px solid #111111",
-    borderRadius: "999px",
-    padding: "9px 16px",
-    fontWeight: 900,
-    boxShadow: "0 5px 0 #111111",
-    color: "#111111",
+  cloudLeft: {
+    position: "absolute",
+    width: 180,
+    height: 80,
+    borderRadius: 80,
+    background: "rgba(255,255,255,0.75)",
+    left: -90,
+    bottom: 0,
+  },
+  cloudRight: {
+    position: "absolute",
+    width: 180,
+    height: 80,
+    borderRadius: 80,
+    background: "rgba(255,255,255,0.75)",
+    right: -90,
+    bottom: 0,
   },
   card: {
     background: "rgba(255,255,255,0.9)",
-    border: "2px solid #111111",
-    borderRadius: "32px",
-    padding: "24px",
-    boxShadow: "0 12px 0 #111111, 0 30px 80px rgba(0,0,0,0.18)",
-    color: "#111111",
+    border: "1px solid rgba(216,170,65,0.45)",
+    borderRadius: 28,
+    padding: 22,
+    boxShadow: "0 24px 70px rgba(90,65,0,0.16)",
+    color: "#261300",
   },
   menuButton: {
     width: "100%",
-    border: "2px solid #111111",
-    background: "linear-gradient(135deg, #ffffff 0%, #fff5bf 100%)",
-    borderRadius: "26px",
-    padding: "18px",
+    border: "1px solid rgba(216,170,65,0.45)",
+    background: "rgba(255,255,255,0.86)",
+    borderRadius: 20,
+    padding: 16,
     display: "flex",
-    gap: "14px",
+    gap: 14,
     alignItems: "center",
     textAlign: "left",
     cursor: "pointer",
-    marginBottom: "14px",
-    fontSize: "17px",
-    boxShadow: "0 6px 0 #111111",
-    color: "#111111",
+    marginBottom: 12,
+    fontSize: 16,
+    color: "#261300",
+    boxShadow: "0 8px 25px rgba(100,70,0,0.08)",
   },
   menuEmoji: {
-    fontSize: "34px",
+    fontSize: 28,
   },
   cardTitle: {
     margin: "0 0 14px",
-    fontSize: "21px",
-    color: "#111111",
+    fontSize: 21,
+    color: "#261300",
   },
   label: {
     display: "block",
     margin: "14px 0 8px",
     fontWeight: 900,
-    color: "#111111",
   },
   input: {
     width: "100%",
     boxSizing: "border-box",
     padding: "15px",
-    border: "2px solid #111111",
-    borderRadius: "17px",
-    fontSize: "16px",
-    background: "#fffef8",
-    color: "#111111",
+    border: "1px solid #efdba5",
+    borderRadius: 16,
+    fontSize: 16,
+    background: "#fffef9",
+    color: "#261300",
   },
   birthRow: {
     display: "grid",
     gridTemplateColumns: "1fr 24px 0.8fr 24px 0.8fr 24px",
-    gap: "7px",
+    gap: 7,
     alignItems: "center",
   },
   metRow: {
     display: "grid",
     gridTemplateColumns: "1fr 24px 0.8fr 24px",
-    gap: "7px",
+    gap: 7,
     alignItems: "center",
   },
   smallInput: {
     width: "100%",
     boxSizing: "border-box",
     padding: "14px 10px",
-    border: "2px solid #111111",
-    borderRadius: "16px",
-    fontSize: "16px",
+    border: "1px solid #efdba5",
+    borderRadius: 15,
+    fontSize: 16,
     textAlign: "center",
-    background: "#fffef8",
-    color: "#111111",
+    background: "#fffef9",
+    color: "#261300",
   },
   divider: {
-    height: "1px",
-    borderTop: "2px dashed #111111",
-    margin: "28px 0",
+    height: 1,
+    borderTop: "1px dashed #e6c66f",
+    margin: "26px 0",
   },
   mainButton: {
     width: "100%",
-    marginTop: "24px",
-    padding: "17px",
-    border: "2px solid #111111",
-    borderRadius: "22px",
-    background: "linear-gradient(135deg, #ffd43b 0%, #ffb800 100%)",
-    color: "#111111",
-    fontSize: "18px",
-    fontWeight: 900,
+    marginTop: 24,
+    padding: 17,
+    border: "none",
+    borderRadius: 22,
+    background: "linear-gradient(135deg, #ffd84d 0%, #f6b900 100%)",
+    color: "#261300",
+    fontSize: 18,
+    fontWeight: 950,
     cursor: "pointer",
-    boxShadow: "0 7px 0 #111111",
+    boxShadow: "0 10px 24px rgba(190,130,0,0.25)",
   },
   backButton: {
-    border: "2px solid #111111",
-    background: "white",
-    color: "#111111",
-    borderRadius: "999px",
+    border: "none",
+    background: "rgba(255,255,255,0.8)",
+    color: "#261300",
+    borderRadius: 999,
     padding: "9px 14px",
     fontWeight: 900,
-    fontSize: "16px",
+    fontSize: 16,
     margin: "0 0 16px",
     cursor: "pointer",
-    boxShadow: "0 4px 0 #111111",
   },
   turtleWrap: {
     textAlign: "center",
-    marginBottom: "14px",
+    marginBottom: 14,
   },
   turtle: {
-    fontSize: "88px",
+    fontSize: 92,
   },
   speech: {
     display: "inline-block",
     background: "white",
-    color: "#111111",
-    border: "2px solid #111111",
-    borderRadius: "999px",
+    color: "#261300",
+    borderRadius: 999,
     padding: "9px 16px",
-    fontWeight: 900,
-    marginBottom: "8px",
-    boxShadow: "0 5px 0 #111111",
+    fontWeight: 950,
+    marginTop: 4,
+    boxShadow: "0 8px 20px rgba(120,80,0,0.12)",
   },
   bigTitle: {
-    fontSize: "32px",
+    fontSize: 30,
     lineHeight: 1.2,
     letterSpacing: "-1px",
     margin: "20px 0",
-    color: "#111111",
+    color: "#261300",
   },
   songBox: {
-    background: "linear-gradient(135deg, #111111 0%, #3b2b00 100%)",
+    background: "linear-gradient(135deg, #3b2b00 0%, #191000 100%)",
     color: "white",
-    borderRadius: "28px",
-    padding: "20px",
-    border: "2px solid #111111",
-    boxShadow: "0 8px 0 #111111",
+    borderRadius: 26,
+    padding: 20,
+    boxShadow: "0 14px 35px rgba(0,0,0,0.16)",
     margin: "18px 0",
   },
   songLabel: {
     margin: 0,
     fontWeight: 900,
-    color: "#ffd43b",
+    color: "#ffd84d",
   },
   songTitle: {
     color: "white",
-    fontSize: "24px",
+    fontSize: 24,
     margin: "8px 0",
   },
   songReason: {
@@ -1062,146 +1114,147 @@ const styles = {
   },
   videoWrap: {
     overflow: "hidden",
-    borderRadius: "20px",
-    marginTop: "14px",
-    border: "2px solid #ffd43b",
+    borderRadius: 18,
+    marginTop: 14,
   },
   scoreBox: {
-    background: "linear-gradient(135deg, #fff3a3 0%, #ffffff 100%)",
-    border: "2px solid #111111",
-    borderRadius: "28px",
-    padding: "20px",
+    background: "rgba(255,255,255,0.86)",
+    border: "1px solid rgba(216,170,65,0.45)",
+    borderRadius: 26,
+    padding: 20,
     margin: "18px 0",
     textAlign: "center",
-    boxShadow: "0 6px 0 #111111",
-    color: "#111111",
+    color: "#261300",
   },
   scoreLabel: {
     margin: 0,
     fontWeight: 900,
-    color: "#111111",
   },
   score: {
     margin: "4px 0",
-    fontSize: "64px",
+    fontSize: 64,
     lineHeight: 1,
-    color: "#111111",
+    color: "#3a1d00",
+    fontWeight: 950,
   },
   scoreText: {
     margin: "8px 0 14px",
-    color: "#111111",
+    color: "#261300",
     fontWeight: 900,
   },
   barBg: {
-    height: "15px",
-    background: "white",
-    borderRadius: "999px",
+    height: 15,
+    background: "#f4f0e7",
+    borderRadius: 999,
     overflow: "hidden",
-    border: "2px solid #111111",
   },
   bar: {
     height: "100%",
-    background: "linear-gradient(90deg, #ffe066, #ffb800)",
+    background: "linear-gradient(90deg, #ffd84d, #f6b900)",
+  },
+  barGuide: {
+    display: "flex",
+    justifyContent: "space-between",
+    fontSize: 12,
+    marginTop: 8,
+    color: "#4c3a13",
   },
   scoreList: {
     display: "grid",
-    gap: "12px",
+    gap: 10,
     margin: "20px 0",
   },
   scoreRow: {
     display: "grid",
     gridTemplateColumns: "38px 1fr 62px",
     alignItems: "center",
-    background: "#fffdf2",
-    color: "#111111",
-    border: "2px solid #111111",
-    borderRadius: "20px",
-    padding: "14px",
+    background: "rgba(255,255,255,0.9)",
+    color: "#261300",
+    border: "1px solid rgba(216,170,65,0.4)",
+    borderRadius: 18,
+    padding: 14,
   },
   scoreIcon: {
-    fontSize: "26px",
+    fontSize: 26,
   },
   section: {
-    borderTop: "2px dashed #111111",
+    borderTop: "1px dashed #e6c66f",
     padding: "22px 0",
   },
   sectionTitle: {
     margin: "0 0 10px",
-    fontSize: "20px",
-    color: "#111111",
+    fontSize: 20,
+    color: "#261300",
   },
   sectionText: {
     margin: 0,
     whiteSpace: "pre-line",
-    fontSize: "16px",
+    fontSize: 16,
     lineHeight: 1.82,
-    color: "#111111",
+    color: "#261300",
   },
   payButton: {
     width: "100%",
-    padding: "17px",
-    border: "2px solid #111111",
-    borderRadius: "22px",
-    background: "linear-gradient(135deg, #ffd43b 0%, #ffb800 100%)",
-    color: "#111111",
-    fontSize: "17px",
-    fontWeight: 900,
+    padding: 17,
+    border: "none",
+    borderRadius: 22,
+    background: "linear-gradient(135deg, #ffd84d 0%, #f6b900 100%)",
+    color: "#261300",
+    fontSize: 17,
+    fontWeight: 950,
     cursor: "pointer",
-    boxShadow: "0 7px 0 #111111",
+    boxShadow: "0 10px 24px rgba(190,130,0,0.25)",
   },
   subButton: {
     width: "100%",
-    marginTop: "12px",
-    padding: "15px",
-    border: "2px solid #111111",
-    borderRadius: "22px",
+    marginTop: 12,
+    padding: 15,
+    border: "1px solid rgba(216,170,65,0.45)",
+    borderRadius: 22,
     background: "white",
-    color: "#111111",
-    fontSize: "16px",
+    color: "#261300",
+    fontSize: 16,
     fontWeight: 900,
     cursor: "pointer",
   },
   quoteBox: {
-    background: "linear-gradient(135deg, #fff0a3 0%, #ffffff 100%)",
-    color: "#111111",
-    border: "2px solid #111111",
-    borderRadius: "26px",
-    padding: "18px",
+    background: "rgba(255,248,209,0.9)",
+    color: "#261300",
+    border: "1px solid rgba(216,170,65,0.45)",
+    borderRadius: 24,
+    padding: 18,
     margin: "18px 0",
-    boxShadow: "0 6px 0 #111111",
   },
   quoteTitle: {
     margin: 0,
     fontWeight: 900,
-    color: "#111111",
   },
   quote: {
-    fontSize: "22px",
+    fontSize: 21,
     lineHeight: 1.5,
-    color: "#111111",
+    color: "#261300",
   },
   recommendBox: {
-    background: "#fffdf2",
-    color: "#111111",
-    border: "2px solid #111111",
-    borderRadius: "26px",
-    padding: "18px",
+    background: "rgba(255,255,255,0.9)",
+    color: "#261300",
+    border: "1px solid rgba(216,170,65,0.45)",
+    borderRadius: 24,
+    padding: 18,
     margin: "16px 0",
-    boxShadow: "0 5px 0 #111111",
   },
   recommendEmoji: {
-    fontSize: "34px",
+    fontSize: 32,
     margin: 0,
   },
   recommendMain: {
-    fontSize: "20px",
+    fontSize: 20,
     fontWeight: 900,
     lineHeight: 1.45,
     margin: "8px 0",
-    color: "#111111",
+    color: "#261300",
   },
   recommendSub: {
-    color: "#111111",
+    color: "#261300",
     lineHeight: 1.6,
     margin: 0,
     fontWeight: 700,
@@ -1213,28 +1266,27 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "20px",
+    padding: 20,
     zIndex: 99,
   },
   modal: {
     width: "100%",
-    maxWidth: "420px",
+    maxWidth: 420,
     background: "white",
-    color: "#111111",
-    border: "2px solid #111111",
-    borderRadius: "28px",
-    padding: "24px",
-    boxShadow: "0 10px 0 #111111",
+    color: "#261300",
+    borderRadius: 28,
+    padding: 24,
+    boxShadow: "0 24px 80px rgba(0,0,0,0.24)",
   },
   payChoice: {
     width: "100%",
-    marginTop: "12px",
-    padding: "15px",
-    border: "2px solid #111111",
-    borderRadius: "18px",
-    background: "#ffd43b",
-    color: "#111111",
-    fontSize: "16px",
+    marginTop: 12,
+    padding: 15,
+    border: "none",
+    borderRadius: 18,
+    background: "#ffd84d",
+    color: "#261300",
+    fontSize: 16,
     fontWeight: 900,
     cursor: "pointer",
   },
