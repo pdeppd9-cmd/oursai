@@ -11,6 +11,29 @@ const mbtiList = [
 
 const relations = ["모름", "친구(썸)", "연애 중", "짝사랑"];
 
+const fortuneImages = [
+  "001_lucky_shop.png","002_morning_sun.png","003_night_sky.png","004_love_heart.png","005_rain_umbrella.png",
+  "006_coffee_break.png","007_studying.png","008_reading_book.png","009_writing.png","010_relaxed_couch.png",
+  "011_travel.png","012_camera.png","013_bicycle.png","014_car_drive.png","015_hot_air_balloon.png",
+  "016_train_window.png","017_airplane.png","018_beach.png","019_lighthouse.png","020_forest_walk.png",
+  "021_picnic.png","022_flower_bouquet.png","023_letter.png","024_phone_call.png","025_message.png",
+  "026_gift_box.png","027_birthday_cake.png","028_party.png","029_balloon.png","030_fireworks.png",
+  "031_tulip.png","032_plant.png","033_water_plant.png","034_cooking.png","035_baking.png",
+  "036_ice_cream.png","037_smoothie.png","038_music_listen.png","039_guitar.png","040_piano.png",
+  "041_drawing.png","042_paint_palette.png","043_craft.png","044_notebook.png","045_calendar.png",
+  "046_deadline.png","047_plan_board.png","048_checklist.png","049_target.png","050_idea_bulb.png",
+  "051_success.png","052_goal_flag.png","053_climbing.png","054_running.png","055_workout.png",
+  "056_yoga.png","057_stretching.png","058_sports_ball.png","059_basketball.png","060_swimming.png",
+  "061_shopping_bag.png","062_market.png","063_coins.png","064_piggy_bank.png","065_wallet.png",
+  "066_money_stack.png","067_bank.png","068_success_money.png","069_graph_up.png","070_graph_down.png",
+  "071_door_open.png","072_door_closed.png","073_window.png","074_mirror.png","075_thinking.png",
+  "076_confused.png","077_excited.png","078_tired.png","079_crying.png","080_broken_heart.png",
+  "081_sleeping.png","082_pillow.png","083_alarm_clock.png","084_day_off.png","085_vacation.png",
+  "086_home.png","087_cozy_blanket.png","088_camping.png","089_bonfire.png","090_stargazing.png",
+  "091_cloud.png","092_rainbow.png","093_star.png","094_four_leaf_clover.png","095_lucky_cat.png",
+  "096_lucky_dice.png","097_shooting_star.png","098_tree.png","099_autumn_leaves.png","100_snow.png",
+];
+
 const songPool = [
   ["NewJeans - Ditto", "pSUydWEqKwE", "출근하면서 들어봐. 오늘 괜히 누가 생각나는 흐름이랑 잘 맞아."],
   ["Laufey - From The Start", "lSD_L-xic9o", "커피 마시면서 들어봐. 설레는데 과하지 않아서 딱 좋아."],
@@ -32,7 +55,7 @@ export default function App() {
   const [paid, setPaid] = useState(false);
 
   const [savedPeople, setSavedPeople] = useState(() => {
-    const saved = localStorage.getItem("woorisai_people_v4");
+    const saved = localStorage.getItem("woorisai_people_v5");
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -62,7 +85,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    localStorage.setItem("woorisai_people_v4", JSON.stringify(savedPeople));
+    localStorage.setItem("woorisai_people_v5", JSON.stringify(savedPeople));
   }, [savedPeople]);
 
   const fortune = useMemo(() => makeDailyFortune(fortuneForm), [fortuneForm]);
@@ -72,13 +95,7 @@ export default function App() {
 
   const savePerson = (p) => {
     if (!p.name) return;
-    const clean = {
-      name: p.name,
-      year: p.year,
-      month: p.month,
-      day: p.day,
-      mbti: p.mbti,
-    };
+    const clean = { name: p.name, year: p.year, month: p.month, day: p.day, mbti: p.mbti };
 
     setSavedPeople((prev) => {
       const filtered = prev.filter((x) => x.name !== clean.name);
@@ -96,23 +113,9 @@ export default function App() {
     if (!p) return;
 
     if (target === "me") {
-      setForm({
-        ...form,
-        myName: p.name,
-        myYear: p.year,
-        myMonth: p.month,
-        myDay: p.day,
-        myMbti: p.mbti,
-      });
+      setForm({ ...form, myName: p.name, myYear: p.year, myMonth: p.month, myDay: p.day, myMbti: p.mbti });
     } else {
-      setForm({
-        ...form,
-        partnerName: p.name,
-        partnerYear: p.year,
-        partnerMonth: p.month,
-        partnerDay: p.day,
-        partnerMbti: p.mbti,
-      });
+      setForm({ ...form, partnerName: p.name, partnerYear: p.year, partnerMonth: p.month, partnerDay: p.day, partnerMbti: p.mbti });
     }
   };
 
@@ -249,10 +252,11 @@ export default function App() {
         <section className="fortune-head">
           <p>{fortune.today}</p>
           <h1>{fortune.title}</h1>
-          <img src="/turtle-wow.png" alt="" />
+          <img src={`/fortune-images/${fortune.heroImage}`} alt="" className="fortune-scene hero-scene" />
         </section>
 
         <Card className="song-card">
+          <SceneImage file={fortune.songImage} />
           <h3>🎵 오늘의 노래</h3>
           <b>{fortune.song}</b>
           <p className="song-line">{fortune.songLine}</p>
@@ -278,20 +282,24 @@ export default function App() {
         </RevealCard>
 
         <RevealCard icon="🎁" title="오늘 올 기회">
+          <SceneImage file={fortune.chanceImage} />
           <p>{fortune.chance}</p>
         </RevealCard>
 
         <RevealCard icon="📜" title="오늘의 격언">
+          <SceneImage file={fortune.quoteImage} />
           <p>“{fortune.quote}”</p>
         </RevealCard>
 
         <Card>
+          <SceneImage file={fortune.mainImage} />
           <h3>🔥 거북이가 솔직히 말해줄게</h3>
           <Paragraphs lines={fortune.lines} />
         </Card>
 
         {fortuneForm.topic.trim() && (
           <Card>
+            <SceneImage file={fortune.topicImage} />
             <h3>🔍 네가 물어본 것</h3>
             <p className="question">“{fortuneForm.topic}”</p>
             <Paragraphs lines={fortune.topicLines} />
@@ -400,6 +408,7 @@ export default function App() {
     return (
       <ResultShell title="사주 궁합 결과" score={score} back={() => setMode("home")} share={share}>
         <Card>
+          <SceneImage file={saju.eventImage} />
           <h3>이 둘 사이에 있을 법한 사건</h3>
           <p className="event-text">{saju.event}</p>
         </Card>
@@ -411,6 +420,7 @@ export default function App() {
 
         <PaidArea paid={paid}>
           <Card>
+            <SceneImage file={saju.detailImage} />
             <h3>🔮 사주 전문 풀이</h3>
             <Paragraphs lines={saju.lines} />
           </Card>
@@ -426,6 +436,7 @@ export default function App() {
     return (
       <ResultShell title="MBTI 궁합 결과" score={score} back={() => setMode("home")} share={share}>
         <Card>
+          <SceneImage file={mbti.eventImage} />
           <h3>{form.myMbti || "나"} 💛 {form.partnerMbti || "상대"}</h3>
           <MbtiCharacters my={form.myMbti} partner={form.partnerMbti} />
           <p className="event-text">{mbti.event}</p>
@@ -438,6 +449,7 @@ export default function App() {
 
         <PaidArea paid={paid}>
           <Card>
+            <SceneImage file={mbti.detailImage} />
             <h3>💬 MBTI 상세 풀이</h3>
             <Paragraphs lines={mbti.lines} />
           </Card>
@@ -516,6 +528,10 @@ function RevealCard({ icon, title, children }) {
       )}
     </section>
   );
+}
+
+function SceneImage({ file }) {
+  return <img src={`/fortune-images/${file}`} alt="" className="fortune-scene" />;
 }
 
 function ResultShell({ title, score, back, share, children }) {
@@ -654,9 +670,13 @@ function Bold({ text }) {
   );
 }
 
-function makeSeed(input) {
+function pickImage(seed, offset = 0) {
+  return fortuneImages[(seed + offset) % fortuneImages.length];
+}
+
+function makeSeed(input, daily = false) {
   const now = new Date();
-  const key = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+  const key = daily ? `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}` : "";
   const text = JSON.stringify(input) + key;
   let seed = 0;
   for (let i = 0; i < text.length; i++) seed = (seed * 31 + text.charCodeAt(i)) % 1000003;
@@ -664,9 +684,7 @@ function makeSeed(input) {
 }
 
 function makeScore(input) {
-  let seed = 0;
-  const text = JSON.stringify(input);
-  for (let i = 0; i < text.length; i++) seed = (seed * 29 + text.charCodeAt(i)) % 1000003;
+  const seed = makeSeed(input, false);
   return 58 + (seed % 39);
 }
 
@@ -675,7 +693,7 @@ function clamp(n) {
 }
 
 function makeDailyFortune(input) {
-  const seed = makeSeed(input);
+  const seed = makeSeed(input, true);
   const song = songPool[seed % songPool.length];
   const color = colors[seed % colors.length];
   const topic = input.topic.trim();
@@ -687,36 +705,65 @@ function makeDailyFortune(input) {
     youtubeId: song[1],
     songLine: song[2],
     color,
+    heroImage: pickImage(seed, 2),
+    songImage: pickImage(seed, 38),
+    chanceImage: pickImage(seed, 50),
+    quoteImage: pickImage(seed, 92),
+    mainImage: pickImage(seed, 75),
+    topicImage: pickImage(seed, 24),
     chance: seed % 2 === 0
       ? "오늘은 오후에 짧은 연락이나 제안이 생각보다 크게 이어질 수 있어."
       : "평소 별생각 없던 사람이나 일이 오늘은 의외의 힌트를 줄 수 있어.",
     quote: seed % 2 === 0
       ? "흐르는 건 억지로 붙잡지 말고, 남는 건 괜히 의심하지 마라."
       : "기회는 큰 소리로 오지 않는다. 스치듯 지나가는 말 속에 숨어 온다.",
-    lines: [
-      `오늘은 **가만히 있으면 손해 보는 날**이야. 괜히 눈치만 보다가 타이밍을 놓치면 나중에 아쉬움이 남을 수 있어.`,
-      `특히 ${input.mbti || "너"} 성향상 오늘은 생각이 많아지기 쉬운데, 너무 오래 고민하면 흐름이 닫혀. 🐢`,
-      `오늘의 핵심은 **짧고 분명하게 말하기**야. 길게 설명하면 진심보다 불안처럼 보일 수 있어.`,
-      `누군가에게 연락하고 싶다면 무겁게 시작하지 마. 가볍게 던지는 말이 오히려 오래 이어질 가능성이 커.`,
-      `오늘은 사람을 통해 기회가 들어오는 날이야. 평소에 깊게 친하지 않았던 사람이 의외의 연결점이 될 수 있어.`,
-      `돈이나 일 쪽에서는 작은 제안, 짧은 알림, 갑작스러운 일정 변경을 그냥 넘기지 마. 거기에 힌트가 있어.`,
-      `연애운은 직접적으로 세게 오는 게 아니라, 살짝 건드렸을 때 상대가 반응하는 식으로 와.`,
-      `오늘 조심할 건 **혼자 상상해서 결론 내리기**야. 아직 일어나지도 않은 일을 머릿속에서 끝까지 굴리면 하루가 무너져.`,
-      `오늘은 먼저 움직이되 매달리지는 않는 태도가 중요해. 이 균형만 잡으면 운이 훨씬 부드럽게 풀려.`,
-      `결론은 이거야. 오늘은 **망설이면 지나가고, 가볍게 잡으면 열리는 날**이야. ✨`,
-    ],
-    topicLines: topic ? [
-      `네가 물어본 **${topic}** 쪽은 오늘 바로 결론이 나는 흐름은 아니야.`,
-      `대신 작은 신호가 먼저 와. 말투, 제안, 연락, 표정 같은 사소한 것에서 방향이 보일 가능성이 커.`,
-      `대처법은 단순해. **확인하려고 몰아붙이지 말고**, 상황이 열릴 틈을 만들어야 해.`,
-      `마음가짐은 “당장 답을 받겠다”가 아니라 **흐름을 내가 유리하게 만들겠다** 쪽이 좋아.`,
-      `오늘 이 주제는 세게 밀면 막히고, 부드럽게 건드리면 풀리는 쪽이야.`,
-    ] : [],
+    lines: makeFortuneLines(input, color),
+    topicLines: topic ? makeTopicLines(topic) : [],
   };
 }
 
+function makeFortuneLines(input, color) {
+  return [
+    `오늘은 **가만히 있으면 손해 보는 날**이야. 괜히 눈치만 보다가 타이밍을 놓치면 나중에 아쉬움이 남을 수 있어.`,
+    `특히 ${input.mbti || "너"} 성향상 오늘은 생각이 많아지기 쉬운데, 너무 오래 고민하면 흐름이 닫혀. 🐢`,
+    `오늘의 핵심은 **짧고 분명하게 말하기**야. 길게 설명하면 진심보다 불안처럼 보일 수 있어.`,
+    `누군가에게 연락하고 싶다면 무겁게 시작하지 마. 가볍게 던지는 말이 오히려 오래 이어질 가능성이 커.`,
+    `오늘은 사람을 통해 기회가 들어오는 날이야. 평소에 깊게 친하지 않았던 사람이 의외의 연결점이 될 수 있어.`,
+    `돈이나 일 쪽에서는 작은 제안, 짧은 알림, 갑작스러운 일정 변경을 그냥 넘기지 마. 거기에 힌트가 있어.`,
+    `연애운은 직접적으로 세게 오는 게 아니라, 살짝 건드렸을 때 상대가 반응하는 식으로 와.`,
+    `오늘 조심할 건 **혼자 상상해서 결론 내리기**야. 아직 일어나지도 않은 일을 머릿속에서 끝까지 굴리면 하루가 무너져.`,
+    `오늘은 먼저 움직이되 매달리지는 않는 태도가 중요해. 이 균형만 잡으면 운이 훨씬 부드럽게 풀려.`,
+    `럭키 컬러는 **${color.name}** 쪽이 좋아. 오늘은 색이 기분을 바꾸는 게 아니라, 네 태도를 바꿔주는 장치처럼 작동해.`,
+    `오전에는 답답하게 막힌다고 느낄 수 있는데, 이건 운이 나쁜 게 아니라 아직 판이 덜 열린 거야.`,
+    `오후로 갈수록 누가 말을 걸거나, 네가 먼저 움직일 명분이 생길 가능성이 커.`,
+    `오늘은 괜히 완벽하게 준비하려고 하면 오히려 시작이 늦어져.`,
+    `대충 하라는 뜻은 아니고, **70% 준비됐을 때 움직이는 게 이기는 날**이라는 뜻이야.`,
+    `누군가의 반응이 미묘하면 바로 상처받지 마. 오늘은 상대도 자기 감정을 늦게 알아차릴 수 있어.`,
+    `오늘은 말투가 중요해. 같은 말도 날카롭게 하면 막히고, 가볍게 하면 열려.`,
+    `해야 할 일이 있다면 제일 쉬운 것부터 시작해. 오늘은 작은 성공을 하나 만들면 흐름이 빨리 붙어.`,
+    `관계에서는 너무 많은 의미를 요구하지 마. 오늘은 확인보다 **분위기 회복**이 먼저야.`,
+    `돈이나 일에서는 큰 한 방보다 작은 실마리가 중요해. 작은 메시지, 작은 제안, 작은 아이디어를 무시하지 마.`,
+    `결론은 이거야. 오늘은 **망설이면 지나가고, 가볍게 잡으면 열리는 날**이야. ✨`,
+  ];
+}
+
+function makeTopicLines(topic) {
+  return [
+    `네가 물어본 **${topic}** 쪽은 오늘 바로 결론이 나는 흐름은 아니야.`,
+    `대신 작은 신호가 먼저 와. 말투, 제안, 연락, 표정 같은 사소한 것에서 방향이 보일 가능성이 커.`,
+    `대처법은 단순해. **확인하려고 몰아붙이지 말고**, 상황이 열릴 틈을 만들어야 해.`,
+    `마음가짐은 “당장 답을 받겠다”가 아니라 **흐름을 내가 유리하게 만들겠다** 쪽이 좋아.`,
+    `오늘 이 주제는 세게 밀면 막히고, 부드럽게 건드리면 풀리는 쪽이야.`,
+    `상대가 있거나 사람이 얽힌 문제라면, 오늘은 직접 결판내기보다 반응을 관찰하는 게 좋아.`,
+    `돈이나 일과 관련된 문제라면, 큰 선택보다 작은 정리가 먼저야.`,
+    `지금 마음이 급하다면 그 자체가 변수야. 급한 상태에서 내린 결정은 나중에 수정 비용이 커져.`,
+    `오늘은 결과보다 **내가 어떤 태도로 움직였는지**가 더 중요해.`,
+    `이 주제는 오늘 완성되는 문제가 아니라, 오늘 첫 단서가 열리는 문제로 보는 게 맞아.`,
+  ];
+}
+
 function makeSajuData(form) {
-  const seed = makeScore(form);
+  const seed = makeSeed(form, false);
   const tenGods = ["비견","겁재","식신","상관","편재","정재","편관","정관","편인","정인"];
   const stems = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
   const stemKr = ["갑","을","병","정","무","기","경","신","임","계"];
@@ -736,6 +783,8 @@ function makeSajuData(form) {
   }));
 
   return {
+    eventImage: pickImage(seed, 23),
+    detailImage: pickImage(seed, 47),
     event: seed % 2 === 0
       ? "둘은 장난처럼 시작했는데 어느 순간 한쪽이 먼저 더 깊게 신경 쓰게 되는 사건이 생기기 쉬워."
       : "둘은 약속이나 연락 타이밍 하나 때문에 서운함이 생기지만, 그 일 때문에 오히려 마음을 확인하게 될 수 있어.",
@@ -769,16 +818,29 @@ function makeLongSajuLines(seed, form) {
     `한쪽은 상대에게 현실감을 주고, 다른 한쪽은 상대에게 감정의 온기를 줄 수 있어.`,
     `이 균형이 맞으면 둘은 꽤 오래 갈 수 있어.`,
     `하지만 균형이 무너지면 한쪽은 지치고, 다른 한쪽은 답답해져.`,
+    `여기서 중요한 건 누가 더 좋아하느냐가 아니야.`,
+    `누가 더 안정적으로 관계의 리듬을 유지하느냐가 더 중요해.`,
+    `둘 중 한 명은 불안하면 말을 더 많이 하려는 흐름이 있고, 다른 한 명은 불안하면 말이 줄어드는 흐름이 있어.`,
+    `그래서 싸움이 생기면 한쪽은 “왜 말 안 해?”가 되고, 다른 한쪽은 “왜 이렇게 몰아붙여?”가 될 수 있어.`,
+    `이 구조를 모르면 둘 다 자기 방식으로 사랑하는데도 서로를 피곤하게 만들 수 있어.`,
+    `사주상 이 관계는 감정이 약한 궁합이 아니라, 오히려 감정이 빨리 쌓이는 쪽이야.`,
+    `다만 감정이 빨리 쌓이는 만큼 오해도 빨리 쌓여.`,
+    `처음부터 너무 많은 확신을 요구하면 관계가 무거워져.`,
+    `반대로 너무 가볍게만 굴면 상대가 진심을 의심하게 돼.`,
+    `그래서 이 궁합은 **가볍게 시작하되, 행동은 꾸준하게** 가야 해.`,
     `결론적으로 이 사주는 ${seed % 2 === 0 ? "**이어질 힘은 강하지만 솔직한 조율이 필요한 궁합**" : "**끌림은 있지만 감정 관리가 필요한 궁합**"}이야.`,
     `거북이 결론은 이거야. **좋아하면 천천히 확인하고, 불안하면 바로 단정하지 마.**`,
   ];
 }
 
 function makeMbtiData(form, score) {
+  const seed = makeSeed(form, false);
   const my = form.myMbti || "모름";
   const partner = form.partnerMbti || "모름";
 
   return {
+    eventImage: pickImage(seed, 25),
+    detailImage: pickImage(seed, 76),
     event: `${my}와 ${partner}는 대화가 잘 풀릴 때 확 가까워지지만, 답장 텀이나 말투 하나로 분위기가 확 바뀔 수 있어.`,
     rows: [
       { label: "내 성향", value: `${my}: 감정 표현 방식과 관계 속도` },
@@ -787,17 +849,41 @@ function makeMbtiData(form, score) {
       { label: "충돌 포인트", value: "연락 텀, 말투, 서운함을 푸는 속도 차이" },
       { label: "예시", value: "한쪽은 바로 풀고 싶고, 다른 한쪽은 혼자 정리해야 편해짐" },
     ],
-    lines: [
-      `${my}와 ${partner}의 궁합은 단순히 좋다, 나쁘다로 끝낼 수 없어.`,
-      `핵심은 **감정 표현 속도**와 **갈등 처리 방식**이야.`,
-      `한쪽은 바로 확인받고 싶고, 다른 한쪽은 생각을 정리한 뒤에야 말이 나올 수 있어.`,
-      `이 차이가 처음에는 신선한 매력으로 보일 수 있어.`,
-      `하지만 시간이 지나면 같은 차이가 서운함으로 바뀔 수도 있어.`,
-      `특히 답장 길이, 약속 잡는 방식, 감정 표현 빈도에서 차이가 잘 드러나.`,
-      `이 관계는 대화가 터질 때는 진짜 빠르게 가까워져.`,
-      `반대로 싸울 때는 말투 하나로 분위기가 크게 바뀔 수 있어.`,
-      `중요한 건 상대의 반응 속도를 사랑의 크기로 착각하지 않는 거야.`,
-      score >= 80 ? `결론은 **다름이 매력으로 작동할 가능성이 높은 조합**이야.` : `결론은 **다름이 피로로 변하지 않게 관리해야 하는 조합**이야.`,
-    ],
+    lines: makeLongMbtiLines(my, partner, score),
   };
+}
+
+function makeLongMbtiLines(my, partner, score) {
+  return [
+    `${my}와 ${partner}의 궁합은 단순히 좋다, 나쁘다로 끝낼 수 없어.`,
+    `핵심은 **감정 표현 속도**와 **갈등 처리 방식**이야.`,
+    `한쪽은 바로 확인받고 싶고, 다른 한쪽은 생각을 정리한 뒤에야 말이 나올 수 있어.`,
+    `이 차이가 처음에는 신선한 매력으로 보일 수 있어.`,
+    `하지만 시간이 지나면 같은 차이가 서운함으로 바뀔 수도 있어.`,
+    `특히 답장 길이, 약속 잡는 방식, 감정 표현 빈도에서 차이가 잘 드러나.`,
+    `이 관계는 대화가 터질 때는 진짜 빠르게 가까워져.`,
+    `관심사가 맞으면 밤새 얘기할 수 있고, 별거 아닌 농담도 오래 이어질 수 있어.`,
+    `그런데 싸울 때는 완전히 다른 문제가 나와.`,
+    `한쪽은 바로 풀어야 마음이 편하고, 다른 한쪽은 혼자 정리해야 말이 나와.`,
+    `이때 바로 풀고 싶은 쪽은 상대가 도망간다고 느껴.`,
+    `반대로 혼자 정리하고 싶은 쪽은 상대가 압박한다고 느껴.`,
+    `그래서 이 조합은 감정이 없는 게 아니라, **감정을 처리하는 방식이 다른 조합**이야.`,
+    `좋을 때는 서로의 다름이 매력으로 보이고, 힘들 때는 그 다름이 피로로 보일 수 있어.`,
+    `특히 연락에서 오해가 생기기 쉬워.`,
+    `한쪽은 짧은 답장을 무심함으로 받아들이고, 다른 한쪽은 그냥 바빠서 짧게 답한 것일 수 있어.`,
+    `이 차이를 모르면 마음이 있는데도 서로를 의심하게 돼.`,
+    `데이트나 만남에서는 한쪽이 분위기를 만들고, 다른 한쪽이 안정감을 잡아주는 식이 잘 맞아.`,
+    `다만 계획을 짤 때는 미리 기대치를 맞추는 게 좋아.`,
+    `즉흥적인 쪽은 자유를 원하고, 계획적인 쪽은 예측 가능성을 원할 수 있어.`,
+    `이 둘이 부딪히면 “왜 이렇게 답답해?”와 “왜 이렇게 불안정해?”가 동시에 나올 수 있어.`,
+    `그래서 이 관계의 핵심 문장은 이거야. **상대의 방식이 틀린 게 아니라 다를 뿐이다.**`,
+    `마음을 확인하고 싶으면 시험하지 말고 말로 물어봐야 해.`,
+    `질투 유발, 일부러 답장 늦추기, 떠보기 같은 행동은 이 궁합에서 독이야.`,
+    `상대가 불편함을 느끼면 회복 속도가 생각보다 느릴 수 있어.`,
+    `반대로 편안함이 쌓이면 꽤 오래 안정적으로 갈 수 있어.`,
+    `이 궁합은 처음 설렘보다 이후의 대화 습관이 더 중요해.`,
+    `좋아하는 마음이 있어도 말투가 거칠면 오래 못 가고, 애정 표현이 적어도 태도가 꾸준하면 오래 갈 수 있어.`,
+    `결론은 ${score >= 80 ? "**다름이 매력으로 작동할 가능성이 높은 조합**" : "**다름이 피로로 변하지 않게 관리해야 하는 조합**"}이야.`,
+    `거북이 결론은 이거야. **상대의 반응 속도를 사랑의 크기로 착각하지 마.**`,
+  ];
 }
