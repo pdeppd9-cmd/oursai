@@ -48,7 +48,10 @@ const itemPool = [
 
 export default function App() {
   const [mode, setMode] = useState("home");
-  const [paid, setPaid] = useState(false);
+
+  const [paid, setPaid] = useState(
+    localStorage.getItem("paid") === "true"
+  );
 
   const [savedPeople, setSavedPeople] = useState(() => {
     const saved = localStorage.getItem("woorisai_people_v6");
@@ -83,6 +86,14 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("woorisai_people_v6", JSON.stringify(savedPeople));
   }, [savedPeople]);
+
+  useEffect(() => {
+    if (window.location.pathname === "/pay/success") {
+      localStorage.setItem("paid", "true");
+      setPaid(true);
+      window.history.replaceState({}, "", "/");
+    }
+  }, []);
 
   const fortune = useMemo(() => makeDailyFortune(fortuneForm), [fortuneForm]);
   const score = useMemo(() => makeScore(form), [form]);
@@ -136,26 +147,78 @@ export default function App() {
     try {
       if (window.Kakao) {
         if (!window.Kakao.isInitialized()) window.Kakao.init(KAKAO_JS_KEY);
+
         window.Kakao.Share.sendDefault({
           objectType: "feed",
           content: {
             title: "우리 사이 🐢💛",
             description: "오늘의 운세랑 궁합을 거북이가 몰래 봐줌",
-            imageUrl: `${SITE_URL}/turtle-wow.png`,
+            imageUrl: `${SITE_URL}/turtle_500x500.png`,
             link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL },
           },
-          buttons: [{ title: "보러가기", link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL } }],
+          buttons: [
+            {
+              title: "나도 해보기",
+              link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL },
+            },
+          ],
         });
         return;
       }
-    } catch {}
+    } catch (e) {
+      console.log(e);
+    }
 
     if (navigator.share) {
-      await navigator.share({ title: "우리 사이", text: "우리 사이에서 봐봐 🐢💛", url: SITE_URL });
+      await navigator.share({
+        title: "우리 사이",
+        text: "우리 사이에서 봐봐 🐢💛",
+        url: SITE_URL,
+      });
     } else {
       await navigator.clipboard.writeText(SITE_URL);
       alert("링크 복사 완료!");
     }
+  };
+
+  const startKakaoPay = async () => {
+    try {
+      const response = await fetch("/api/kakaopay-ready", {
+        method: "POST",
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.tid) {
+        localStorage.setItem("kakaopay_tid", data.tid);
+      }
+
+      if (data.partner_order_id) {
+        localStorage.setItem("partner_order_id", data.partner_order_id);
+      }
+
+      if (data.partner_user_id) {
+        localStorage.setItem("partner_user_id", data.partner_user_id);
+      }
+
+      if (data.next_redirect_pc_url) {
+        window.location.href = data.next_redirect_pc_url;
+      } else if (data.next_redirect_mobile_url) {
+        window.location.href = data.next_redirect_mobile_url;
+      } else {
+        alert("결제창 생성 실패");
+        console.log(data);
+      }
+    } catch (e) {
+      console.error(e);
+      alert("결제 오류");
+    }
+  };
+
+  const resetPaid = () => {
+    localStorage.removeItem("paid");
+    setPaid(false);
   };
 
   if (mode === "home") {
@@ -414,7 +477,7 @@ export default function App() {
           <SajuTable data={saju.table} />
         </Card>
 
-        <PaidArea paid={paid}>
+        <PaidArea paid={paid} startKakaoPay={startKakaoPay}>
           <Card>
             <SceneImage file={saju.detailImage} />
             <h3>🔮 사주 전문 풀이</h3>
@@ -422,8 +485,8 @@ export default function App() {
           </Card>
         </PaidArea>
 
-        {!paid && <button className="pay-btn" onClick={() => setPaid(true)}>990원으로 전체 보기 kakaopay</button>}
         <button className="sub-btn" onClick={share}>공유하기</button>
+        <button className="sub-btn" onClick={resetPaid}>테스트 초기화</button>
       </ResultShell>
     );
   }
@@ -448,7 +511,7 @@ export default function App() {
           <MbtiTable rows={mbti.rows} />
         </Card>
 
-        <PaidArea paid={paid}>
+        <PaidArea paid={paid} startKakaoPay={startKakaoPay}>
           <Card>
             <SceneImage file={mbti.detailImage} />
             <h3>💬 MBTI 상세 풀이</h3>
@@ -456,8 +519,8 @@ export default function App() {
           </Card>
         </PaidArea>
 
-        {!paid && <button className="pay-btn" onClick={() => setPaid(true)}>990원으로 전체 보기 kakaopay</button>}
         <button className="sub-btn" onClick={share}>공유하기</button>
+        <button className="sub-btn" onClick={resetPaid}>테스트 초기화</button>
       </ResultShell>
     );
   }
@@ -615,15 +678,19 @@ function MbtiTable({ rows }) {
   );
 }
 
-function PaidArea({ paid, children }) {
+function PaidArea({ paid, startKakaoPay, children }) {
   return (
     <div className="paid-area">
       <div className={paid ? "" : "locked"}>{children}</div>
+
       {!paid && (
         <div className="lock-cover">
           <img src="/turtle-heart.png" alt="" />
           <h3>전체 해석은 결제 후 열려요</h3>
           <p>전문 용어, 이유, 실제 사건 예시까지 전부 풀어줄게.</p>
+          <button className="pay-btn" onClick={startKakaoPay}>
+            💳 카카오페이로 전체 보기 (990원)
+          </button>
         </div>
       )}
     </div>
@@ -696,16 +763,12 @@ function makeDailyFortune(input) {
     mainImage: pickImage(seed, 75),
     topicImage: pickImage(seed, 24),
     chanceLines: [
-      `오늘의 기회는 **크게 울리는 사건**보다 작게 스치는 신호로 들어와.`,
-      `짧은 연락, 갑작스러운 제안, 평소엔 대수롭지 않게 넘겼던 말 하나가 오늘은 꽤 중요한 힌트가 될 수 있어. 🎁`,
-      `특히 오후에는 사람을 통해 운이 열릴 가능성이 커.`,
-      `누가 뭔가를 물어보거나 가볍게 말을 걸면, 대충 넘기지 말고 한 번 더 이어가 봐.`,
+      `오늘의 기회는 **크게 울리는 사건**보다 작게 스치는 신호로 들어와. 짧은 연락, 갑작스러운 제안, 평소엔 대수롭지 않게 넘겼던 말 하나가 오늘은 꽤 중요한 힌트가 될 수 있어. 🎁`,
+      `특히 오후에는 사람을 통해 운이 열릴 가능성이 커. 누가 뭔가를 물어보거나 가볍게 말을 걸면, 대충 넘기지 말고 한 번 더 이어가 봐.`,
     ],
     quoteLines: [
-      `“흐르는 건 억지로 붙잡지 말고, 남는 건 괜히 의심하지 마라.”`,
-      `오늘은 이 말이 꽤 중요해.`,
-      `붙잡아야 할 것과 흘려보내야 할 것을 구분해야 운이 덜 꼬여. 📜`,
-      `전부 다 확인하려고 들면 오히려 중요한 감각을 놓칠 수 있어.`,
+      `“흐르는 건 억지로 붙잡지 말고, 남는 건 괜히 의심하지 마라.” 오늘은 이 말이 꽤 중요해. 📜`,
+      `붙잡아야 할 것과 흘려보내야 할 것을 구분해야 운이 덜 꼬여. 전부 다 확인하려고 들면 오히려 중요한 감각을 놓칠 수 있어.`,
     ],
     lines: makeFortuneLines(input, color),
     topicLines: topic ? makeTopicLines(topic) : [],
