@@ -91,7 +91,6 @@ export default function App() {
     const paymentKey = params.get("paymentKey");
     const orderId = params.get("orderId");
     const amount = params.get("amount");
-
     const failMessage = params.get("message");
 
     if (window.location.pathname === "/pay/fail") {
@@ -157,7 +156,7 @@ export default function App() {
   const startTossPay = async () => {
     try {
       if (!window.TossPayments) {
-        alert("토스페이먼츠 SDK가 아직 로딩되지 않았어.");
+        alert("토스 SDK 로딩 실패");
         return;
       }
 
@@ -169,15 +168,24 @@ export default function App() {
       localStorage.setItem("lastPaidMode", mode);
 
       const tossPayments = window.TossPayments(TOSS_CLIENT_KEY);
+      const payment = tossPayments.payment({
+        customerKey: window.TossPayments.ANONYMOUS,
+      });
+
       const orderId = `oursai_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
 
-      tossPayments.requestPayment("카드", {
-        amount: PAYMENT_AMOUNT,
+      await payment.requestPayment({
+        method: "CARD",
+        amount: {
+          currency: "KRW",
+          value: PAYMENT_AMOUNT,
+        },
         orderId,
         orderName: "우리사이 프리미엄 해석",
-        customerName: form.myName || fortuneForm.name || "우리사이 사용자",
         successUrl: `${window.location.origin}/pay/success`,
         failUrl: `${window.location.origin}/pay/fail`,
+        customerEmail: "test@oursai.com",
+        customerName: form.myName || fortuneForm.name || "우리사이 사용자",
       });
     } catch (e) {
       console.error(e);
