@@ -21,11 +21,11 @@ export default async function handler(req, res) {
     }
 
     const imageBuffer = Buffer.from(imageBase64, "base64");
-    const blob = new Blob([imageBuffer], { type: mimeType });
+    const file = new File([imageBuffer], "upload.png", { type: mimeType });
 
     const formData = new FormData();
     formData.append("model", "gpt-image-1");
-    formData.append("image", blob, "upload.png");
+    formData.append("image", file);
     formData.append("prompt", prompt);
     formData.append("size", "1024x1024");
 

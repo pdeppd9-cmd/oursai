@@ -509,36 +509,6 @@ textarea{
   font-size:18px;
 }
 
-.step-row{
-  display:flex;
-  justify-content:space-between;
-  margin-top:18px;
-}
-
-.step-row span{
-  width:32%;
-  text-align:center;
-  border-radius:18px;
-  padding:13px 6px;
-  font-size:12px;
-  line-height:1.5;
-
-  background:#efe2bc;
-  color:#705f4d;
-}
-
-.step-row .active{
-  background:
-    linear-gradient(
-      135deg,
-      #ffd84c,
-      #ffbf30
-    );
-
-  color:#24180f;
-  font-weight:950;
-}
-
 .fortune-head{
   text-align:center;
   margin-top:18px;
@@ -634,10 +604,6 @@ textarea{
   font-weight:900;
 }
 
-.reveal-content{
-  color:#24180f;
-}
-
 .color-card{
   display:flex;
   align-items:center;
@@ -669,18 +635,6 @@ textarea{
   margin-top:8px;
   color:#5b4b3d;
   line-height:1.7;
-  font-weight:700;
-}
-
-.item-card b{
-  color:#24180f;
-  font-size:22px;
-}
-
-.item-card p{
-  margin-top:8px;
-  color:#5b4b3d;
-  line-height:1.8;
   font-weight:700;
 }
 
@@ -785,51 +739,6 @@ textarea{
     );
 }
 
-.score-list{
-  margin-top:16px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.score-row{
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,.96),
-      rgba(255,248,228,.88)
-    );
-
-  border-radius:24px;
-  padding:18px;
-
-  display:flex;
-  align-items:center;
-  gap:14px;
-
-  box-shadow:0 10px 20px rgba(0,0,0,.06);
-}
-
-.score-row span{
-  font-size:30px;
-}
-
-.score-row b{
-  font-size:18px;
-  color:#24180f;
-}
-
-.score-row p{
-  margin-top:4px;
-  color:#7a6858;
-  font-size:12px;
-}
-
-.score-row strong{
-  margin-left:auto;
-  font-size:24px;
-}
-
 .summary-card{
   background:
     linear-gradient(
@@ -927,28 +836,11 @@ textarea{
   font-weight:900;
 }
 
-.saju-box.yellow{
-  background:#f5b312;
-}
-
-.saju-box.dark{
-  background:#2f2f2f;
-  color:white;
-}
-
-.saju-box.red{
-  background:#df2323;
-  color:white;
-}
-
-.saju-box.white{
-  background:white;
-}
-
-.saju-box.green{
-  background:#38a35b;
-  color:white;
-}
+.saju-box.yellow{ background:#f5b312; }
+.saju-box.dark{ background:#2f2f2f; color:white; }
+.saju-box.red{ background:#df2323; color:white; }
+.saju-box.white{ background:white; }
+.saju-box.green{ background:#38a35b; color:white; }
 
 .saju-warning,
 .soft-text{
@@ -957,14 +849,6 @@ textarea{
   font-size:13px;
   line-height:1.7;
   font-weight:700;
-}
-
-.saju-note{
-  background:#fff;
-  padding:14px;
-  font-size:11px;
-  line-height:1.6;
-  color:#736252;
 }
 
 .paid-area{
@@ -1217,14 +1101,6 @@ textarea{
   color:#4b3b2c;
   line-height:1.9;
   font-size:13px;
-  font-weight:700;
-}
-
-.prompt-card small{
-  display:block;
-  margin-top:12px;
-  color:#75614e;
-  line-height:1.6;
   font-weight:700;
 }
 

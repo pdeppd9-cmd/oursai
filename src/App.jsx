@@ -1024,8 +1024,12 @@ function ResultShell({ drawer, title, score, coins, back, share, menu, children 
       <Card>
         <p className="score-label">궁합 점수</p>
         <h1 className="score">{score}<span>%</span></h1>
-        <p className="score-desc">{score >= 80 ? "생각보다 잘 맞는 조합이야." : "끌림은 있는데 조율이 필요한 조합이야."}</p>
-        <div className="bar"><div style={{ width: `${score}%` }} /></div></div>
+        <p className="score-desc">
+          {score >= 80 ? "생각보다 잘 맞는 조합이야." : "끌림은 있는데 조율이 필요한 조합이야."}
+        </p>
+        <div className="bar">
+          <div style={{ width: `${score}%` }} />
+        </div>
       </Card>
 
       {children}
@@ -1156,7 +1160,6 @@ function makeDailyFortune(input) {
 
   const song = songPool[seed % songPool.length];
   const color = colors[seed % colors.length];
-  const item = itemPool[seed % itemPool.length];
 
   return {
     today: new Date().toLocaleDateString("ko-KR", {
@@ -1170,7 +1173,6 @@ function makeDailyFortune(input) {
     youtubeId: song[1],
     songLine: song[2],
     color,
-    item,
     heroImage: pickImage(seed, 2),
     songImage: pickImage(seed, 38),
     chanceLines: [
