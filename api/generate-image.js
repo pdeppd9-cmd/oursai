@@ -7,7 +7,9 @@ export default async function handler(req, res) {
     const apiKey = process.env.OPENAI_API_KEY;
 
     if (!apiKey) {
-      return res.status(500).json({ error: "OPENAI_API_KEY가 설정되지 않았습니다." });
+      return res.status(500).json({
+        error: "OPENAI_API_KEY가 설정되지 않았습니다.",
+      });
     }
 
     const { prompt, imageBase64, mimeType } = req.body || {};
@@ -21,11 +23,11 @@ export default async function handler(req, res) {
     }
 
     const imageBuffer = Buffer.from(imageBase64, "base64");
-    const file = new File([imageBuffer], "upload.png", { type: mimeType });
+    const blob = new Blob([imageBuffer], { type: mimeType });
 
     const formData = new FormData();
     formData.append("model", "gpt-image-1");
-    formData.append("image", file);
+    formData.append("image", blob, "upload.png");
     formData.append("prompt", prompt);
     formData.append("size", "1024x1024");
 
@@ -60,6 +62,7 @@ export default async function handler(req, res) {
     });
   } catch (error) {
     console.error(error);
+
     return res.status(500).json({
       error: "서버 오류",
       message: error.message,
