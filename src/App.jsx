@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 
 const SITE_URL = "https://oursai.vercel.app";
@@ -31,20 +31,68 @@ const birthHours = [
   "해시 21:30~23:29",
 ];
 
-const coinPacks = [
-  { id: "coin1", title: "1코인", coins: 1, price: 990, desc: "가볍게 한 번 만들기" },
-  { id: "coin10", title: "10코인", coins: 10, price: 9000, desc: "자주 쓸 사람 추천" },
+const featureList = [
+  {
+    key: "birthday",
+    title: "생일 전광판",
+    desc: "실제 사진으로 생일 축하 광고",
+    icon: "🎂",
+    thumb: "billboard",
+  },
+  {
+    key: "animal",
+    title: "커플 동물상",
+    desc: "커플을 고양이·동물상 콘셉트로",
+    icon: "🐱",
+    thumb: "cat",
+  },
+  {
+    key: "young",
+    title: "어린 시절 사진",
+    desc: "우리의 어린 시절 모습 만들기",
+    icon: "👶",
+    thumb: "young",
+  },
+  {
+    key: "comic",
+    title: "순정만화 속 우리",
+    desc: "만화 주인공 분위기로 변환",
+    icon: "💕",
+    thumb: "comic",
+  },
+  {
+    key: "travel",
+    title: "여행 감성 콜라주",
+    desc: "여행 기록 같은 감성 콜라주",
+    icon: "🧳",
+    thumb: "travel",
+  },
+  {
+    key: "color",
+    title: "퍼스널컬러 분석",
+    desc: "컬러·분위기·스타일 리포트",
+    icon: "🎨",
+    thumb: "color",
+  },
+  {
+    key: "hair",
+    title: "헤어스타일 추천",
+    desc: "얼굴형 기반 헤어 추천",
+    icon: "💇",
+    thumb: "hair",
+  },
+  {
+    key: "palm",
+    title: "손금 분석",
+    desc: "손바닥 사진 기반 리포트",
+    icon: "✋",
+    thumb: "palm",
+  },
 ];
 
-const featureList = [
-  { key: "birthday", title: "생일 전광판", desc: "실제 사진으로 생일 축하 광고", icon: "🎂" },
-  { key: "animal", title: "커플 동물상", desc: "커플을 고양이·동물상 콘셉트로", icon: "🐱" },
-  { key: "young", title: "어린 시절 사진", desc: "우리의 어린 시절 모습 만들기", icon: "👶" },
-  { key: "comic", title: "순정만화 속 우리", desc: "만화 주인공 분위기로 변환", icon: "💕" },
-  { key: "travel", title: "여행 감성 콜라주", desc: "여행 기록 같은 감성 콜라주", icon: "🧳" },
-  { key: "color", title: "퍼스널컬러 분석", desc: "컬러·분위기·스타일 리포트", icon: "🎨" },
-  { key: "hair", title: "헤어스타일 추천", desc: "얼굴형 기반 헤어 추천", icon: "💇" },
-  { key: "palm", title: "손금 분석", desc: "손바닥 사진 기반 리포트", icon: "✋" },
+const coinPacks = [
+  { title: "1코인", coins: 1, price: 990, desc: "가볍게 한 번 만들기" },
+  { title: "10코인", coins: 10, price: 9000, desc: "자주 쓸 사람 추천" },
 ];
 
 const songPool = [
@@ -52,16 +100,13 @@ const songPool = [
   ["Laufey - From The Start", "lSD_L-xic9o", "부드럽게 기분을 올리고 싶을 때 좋아."],
   ["IU - Love wins all", "JleoAppaxi0", "생각이 많은 날, 마음 정리용으로 잘 맞아."],
   ["The Weeknd - Out of Time", "2fDzCWNS3ig", "타이밍이 중요한 날에 어울려."],
-  ["Taylor Swift - Cruel Summer", "ic8j13piAhQ", "조금 더 과감하게 움직이고 싶을 때 좋아."],
 ];
 
 const colors = [
-  { name: "블랙", cls: "black", text: "중심을 잡고 싶을 때 좋아. 말보다 분위기로 설득되는 날이야." },
   { name: "네이비", cls: "navy", text: "신뢰감과 차분함이 필요한 날에 잘 맞아." },
   { name: "베이지", cls: "beige", text: "부드러운 인상을 만들고 관계운을 열어줘." },
   { name: "화이트", cls: "white", text: "복잡한 생각을 덜어내고 깔끔한 흐름을 만들어줘." },
-  { name: "레드", cls: "red", text: "존재감과 추진력이 필요한 순간에 좋아." },
-  { name: "블루", cls: "blue", text: "말실수 줄이고 차분한 대화를 돕는 색이야." },
+  { name: "블랙", cls: "black", text: "중심을 잡고 싶을 때 좋아. 말보다 분위기로 설득되는 날이야." },
 ];
 
 export default function App() {
@@ -70,12 +115,12 @@ export default function App() {
   const [selectedFeature, setSelectedFeature] = useState(featureList[0]);
 
   const [coins, setCoins] = useState(() => {
-    const joined = localStorage.getItem("woorisai_joined_v10");
-    const saved = localStorage.getItem("woorisai_coins_v10");
+    const joined = localStorage.getItem("woorisai_joined_final");
+    const saved = localStorage.getItem("woorisai_coins_final");
 
     if (!joined) {
-      localStorage.setItem("woorisai_joined_v10", "true");
-      localStorage.setItem("woorisai_coins_v10", "3");
+      localStorage.setItem("woorisai_joined_final", "true");
+      localStorage.setItem("woorisai_coins_final", "3");
       return 3;
     }
 
@@ -83,11 +128,11 @@ export default function App() {
   });
 
   const [unlocked, setUnlocked] = useState(() => {
-    return JSON.parse(localStorage.getItem("woorisai_unlocked_v10") || "{}");
+    return JSON.parse(localStorage.getItem("woorisai_unlocked_final") || "{}");
   });
 
   const [savedPeople, setSavedPeople] = useState(() => {
-    return JSON.parse(localStorage.getItem("woorisai_people_v10") || "[]");
+    return JSON.parse(localStorage.getItem("woorisai_people_final") || "[]");
   });
 
   const [fortuneForm, setFortuneForm] = useState({
@@ -138,21 +183,27 @@ export default function App() {
     previewUrl: "",
     resultImage: "",
     loading: false,
+    usedDemo: false,
   });
 
-  const [bottomTab, setBottomTab] = useState("home");
-
   useEffect(() => {
-    localStorage.setItem("woorisai_coins_v10", String(coins));
+    localStorage.setItem("woorisai_coins_final", String(coins));
   }, [coins]);
 
   useEffect(() => {
-    localStorage.setItem("woorisai_unlocked_v10", JSON.stringify(unlocked));
+    localStorage.setItem("woorisai_unlocked_final", JSON.stringify(unlocked));
   }, [unlocked]);
 
   useEffect(() => {
-    localStorage.setItem("woorisai_people_v10", JSON.stringify(savedPeople));
+    localStorage.setItem("woorisai_people_final", JSON.stringify(savedPeople));
   }, [savedPeople]);
+
+  const bottomTab =
+    mode.includes("fortune") ? "fortune" :
+    mode.includes("saju") ? "saju" :
+    mode.includes("mbti") ? "mbti" :
+    mode.includes("feature") ? "photo" :
+    "home";
 
   const fortune = useMemo(() => makeDailyFortune(fortuneForm), [fortuneForm]);
   const sajuScore = useMemo(() => makeSajuScore(form), [form]);
@@ -163,14 +214,27 @@ export default function App() {
   const go = (next) => {
     setMode(next);
     setDrawerOpen(false);
-    setBottomTab(
-      next.includes("saju") ? "saju" :
-      next.includes("mbti") ? "mbti" :
-      next.includes("feature") ? "photo" :
-      next.includes("fortune") ? "fortune" :
-      "home"
-    );
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const openFeature = (feature) => {
+    setSelectedFeature(feature);
+    setFeatureForm({
+      name: "",
+      message: "",
+      birthdayYear: "",
+      birthdayMonth: "",
+      birthdayDay: "",
+      place: "",
+      fileName: "",
+      imageBase64: "",
+      mimeType: "",
+      previewUrl: "",
+      resultImage: "",
+      loading: false,
+      usedDemo: false,
+    });
+    go("feature");
   };
 
   const share = async () => {
@@ -213,6 +277,7 @@ export default function App() {
 
   const savePerson = (person) => {
     if (!person.name) return;
+
     setSavedPeople((prev) => {
       return [{ ...person }, ...prev.filter((x) => x.name !== person.name)].slice(0, 12);
     });
@@ -299,46 +364,6 @@ export default function App() {
     });
   };
 
-  const validate = () => {
-    if (!form.myName || !form.partnerName) {
-      alert("이름은 둘 다 입력해줘.");
-      return false;
-    }
-
-    if (
-      !form.myYear ||
-      !form.myMonth ||
-      !form.myDay ||
-      !form.partnerYear ||
-      !form.partnerMonth ||
-      !form.partnerDay
-    ) {
-      alert("생년월일은 둘 다 입력해줘.");
-      return false;
-    }
-
-    return true;
-  };
-
-  const openFeature = (feature) => {
-    setSelectedFeature(feature);
-    setFeatureForm({
-      name: "",
-      message: "",
-      birthdayYear: "",
-      birthdayMonth: "",
-      birthdayDay: "",
-      place: "",
-      fileName: "",
-      imageBase64: "",
-      mimeType: "",
-      previewUrl: "",
-      resultImage: "",
-      loading: false,
-    });
-    go("feature");
-  };
-
   const handleFeatureFile = (file) => {
     if (!file) return;
 
@@ -360,10 +385,32 @@ export default function App() {
         mimeType: file.type,
         previewUrl: result,
         resultImage: "",
+        usedDemo: false,
       }));
     };
 
     reader.readAsDataURL(file);
+  };
+
+  const validate = () => {
+    if (!form.myName || !form.partnerName) {
+      alert("이름은 둘 다 입력해줘.");
+      return false;
+    }
+
+    if (
+      !form.myYear ||
+      !form.myMonth ||
+      !form.myDay ||
+      !form.partnerYear ||
+      !form.partnerMonth ||
+      !form.partnerDay
+    ) {
+      alert("생년월일은 둘 다 입력해줘.");
+      return false;
+    }
+
+    return true;
   };
 
   const generateFeature = async () => {
@@ -373,7 +420,7 @@ export default function App() {
       return;
     }
 
-    if (!featureForm.imageBase64 || !featureForm.mimeType) {
+    if (!featureForm.previewUrl) {
       alert("사진을 먼저 업로드해줘.");
       return;
     }
@@ -386,14 +433,17 @@ export default function App() {
       return;
     }
 
-    const prompt = makeFeaturePrompt(selectedFeature.key, featureForm);
-
     try {
       setFeatureForm((prev) => ({
         ...prev,
         loading: true,
         resultImage: "",
+        usedDemo: false,
       }));
+
+      if (!featureForm.imageBase64 || !featureForm.mimeType) {
+        throw new Error("이미지 데이터가 없습니다.");
+      }
 
       const response = await fetch("/api/generate-image", {
         method: "POST",
@@ -401,7 +451,7 @@ export default function App() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          prompt,
+          prompt: makeFeaturePrompt(selectedFeature.key, featureForm),
           imageBase64: featureForm.imageBase64,
           mimeType: featureForm.mimeType,
         }),
@@ -410,13 +460,7 @@ export default function App() {
       const data = await response.json();
 
       if (!response.ok) {
-        console.log(data);
-        alert(data?.detail?.error?.message || data?.error || "이미지 생성에 실패했어.");
-        setFeatureForm((prev) => ({
-          ...prev,
-          loading: false,
-        }));
-        return;
+        throw new Error(data?.detail?.error?.message || data?.error || "이미지 생성 실패");
       }
 
       setCoins((prev) => prev - 1);
@@ -425,13 +469,16 @@ export default function App() {
         ...prev,
         loading: false,
         resultImage: data.imageUrl,
+        usedDemo: false,
       }));
     } catch (error) {
-      console.error(error);
-      alert("이미지 생성 중 오류가 났어.");
+      console.log(error.message);
+
       setFeatureForm((prev) => ({
         ...prev,
         loading: false,
+        resultImage: prev.previewUrl,
+        usedDemo: true,
       }));
     }
   };
@@ -511,7 +558,7 @@ export default function App() {
 
           {coinPacks.map((pack) => (
             <button
-              key={pack.id}
+              key={pack.title}
               className="coin-pack"
               onClick={() => {
                 setCoins((prev) => prev + pack.coins);
@@ -589,7 +636,7 @@ export default function App() {
             운세 보러가기
           </button>
 
-          <p className="save-note">* 입력한 정보는 저장되지 않아요 💗</p>
+          <p className="save-note">* 입력한 정보는 저장돼요 💗</p>
         </Card>
       </Phone>
     );
@@ -667,7 +714,6 @@ export default function App() {
         <Top title={isSaju ? "사주 궁합" : "MBTI 궁합"} back={() => go("home")} menu={() => setDrawerOpen(true)} />
 
         <Card>
-          <h3>{isSaju ? "내 정보" : "MBTI 정보"}</h3>
           <PersonCard title="🟡 내 정보" target="my" form={form} update={updateForm} isSaju={isSaju} people={savedPeople} load={(name) => loadPerson("me", name)} />
           <PersonCard title="🟢 상대 정보" target="partner" form={form} update={updateForm} isSaju={isSaju} people={savedPeople} load={(name) => loadPerson("partner", name)} />
 
@@ -794,7 +840,7 @@ export default function App() {
         <div className="feature-grid">
           {featureList.map((feature) => (
             <button key={feature.key} className="feature-item" onClick={() => openFeature(feature)}>
-              <div className="feature-thumb">{feature.icon}</div>
+              <div className={`feature-thumb ${feature.thumb}`}>{feature.icon}</div>
               <div>
                 <b>{feature.title}</b>
                 <p>{feature.desc}</p>
@@ -816,7 +862,7 @@ export default function App() {
         <Top title={selectedFeature.title} back={() => go("featureHub")} menu={() => setDrawerOpen(true)} />
 
         <Card className="feature-hero">
-          <div className="feature-hero-icon">{selectedFeature.icon}</div>
+          <div className={`feature-hero-icon ${selectedFeature.thumb}`}>{selectedFeature.icon}</div>
           <h2>{selectedFeature.title}</h2>
           <p>{selectedFeature.desc}</p>
           <span>1코인 사용</span>
@@ -856,26 +902,7 @@ export default function App() {
           <input type="file" accept="image/*" onChange={(e) => handleFeatureFile(e.target.files?.[0])} />
 
           {featureForm.previewUrl && (
-            <div className={selectedFeature.key === "young" ? "before-after-preview" : "image-preview-box"}>
-              {selectedFeature.key === "young" ? (
-                <>
-                  <div>
-                    <small>before</small>
-                    <img src={featureForm.previewUrl} alt="before" />
-                  </div>
-                  <div className="after-placeholder">
-                    <small>after</small>
-                    <span>✨</span>
-                    <p>생성 후 표시</p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <p>업로드한 사진</p>
-                  <img src={featureForm.previewUrl} alt="업로드 미리보기" />
-                </>
-              )}
-            </div>
+            <FeaturePreview feature={selectedFeature} form={featureForm} />
           )}
 
           <button className="main-btn" onClick={generateFeature} disabled={featureForm.loading}>
@@ -1073,6 +1100,109 @@ function PersonCard({ title, target, form, update, isSaju, people, load }) {
   );
 }
 
+function FeaturePreview({ feature, form }) {
+  if (feature.key === "young") {
+    return (
+      <div className="before-after-preview">
+        <div>
+          <small>before</small>
+          <img src={form.previewUrl} alt="before" />
+        </div>
+        <div className="after-placeholder">
+          <small>after</small>
+          <span>✨</span>
+          <p>생성 후 표시</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="image-preview-box">
+      <p>업로드한 사진</p>
+      <img src={form.previewUrl} alt="업로드 미리보기" />
+    </div>
+  );
+}
+
+function FeatureResultCard({ feature, form, retry }) {
+  return (
+    <Card className="result-image-card">
+      <h3>{feature.title} 결과</h3>
+
+      {form.usedDemo && (
+        <p className="demo-note">
+          API 한도 때문에 실제 생성 대신 데모 화면으로 표시 중이야. 크레딧 충전 후에는 실제 생성 이미지가 들어와.
+        </p>
+      )}
+
+      {feature.key === "birthday" && <BirthdayBillboardDemo form={form} />}
+
+      {feature.key === "young" && (
+        <div className="before-after-result">
+          <div>
+            <small>before</small>
+            <img src={form.previewUrl} alt="before" />
+          </div>
+          <div className="young-after-card">
+            <small>after</small>
+            <img src={form.resultImage} alt="after" />
+            <div className="star-layer">★ ★ ★</div>
+          </div>
+        </div>
+      )}
+
+      {feature.key === "animal" && (
+        <div className="animal-result-demo">
+          <img src={form.resultImage} alt="동물상 결과" />
+          <div className="cat-label">🐱 커플 동물상 무드</div>
+        </div>
+      )}
+
+      {!["birthday", "young", "animal"].includes(feature.key) && (
+        <div className="generic-result-demo">
+          <img src={form.resultImage} alt="생성 결과" />
+          <div className="report-overlay">
+            <b>{feature.title}</b>
+            <span>감성 리포트 생성 완료</span>
+          </div>
+        </div>
+      )}
+
+      <div className="result-buttons">
+        <a href={form.resultImage} download={`${feature.key}-result.png`}>저장하기</a>
+        <button onClick={retry}>다시 만들기</button>
+      </div>
+    </Card>
+  );
+}
+
+function BirthdayBillboardDemo({ form }) {
+  const birthday = `${form.birthdayYear}.${String(form.birthdayMonth).padStart(2, "0")}.${String(form.birthdayDay).padStart(2, "0")}`;
+  const message = form.message || "오늘도 너를 응원해 💙";
+
+  return (
+    <div className="billboard-demo">
+      <div className="subway-wall">
+        <div className="billboard-screen">
+          <div className="birthday-bg">
+            <div className="petals">✦ ✧ ✦</div>
+            <p className="billboard-top">제 생일이에요. 다들 축하해주세요. 🥳</p>
+            <small>늘 함께해줘서 고마워</small>
+            <h2>{form.name || "이서윤"}</h2>
+            <h1>HAPPY<br />BIRTHDAY</h1>
+            <div className="pink-line">우리의 자랑, {form.name || "이서윤"}</div>
+            <strong>{birthday}</strong>
+            <p className="billboard-message">{message}</p>
+            <img src={form.previewUrl} alt="인물" />
+          </div>
+        </div>
+        <div className="floor-line" />
+      </div>
+    </div>
+  );
+}
+
 function RevealCard({ icon, title, children }) {
   const [open, setOpen] = useState(false);
 
@@ -1193,40 +1323,6 @@ function MbtiTable({ rows }) {
   );
 }
 
-function FeatureResultCard({ feature, form, retry }) {
-  const isYoung = feature.key === "young";
-  const isAnimal = feature.key === "animal";
-  const isBirthday = feature.key === "birthday";
-
-  return (
-    <Card className="result-image-card">
-      <h3>{feature.title} 결과</h3>
-
-      {isYoung && form.previewUrl ? (
-        <div className="before-after-result">
-          <div>
-            <small>before</small>
-            <img src={form.previewUrl} alt="before" />
-          </div>
-          <div>
-            <small>after</small>
-            <img src={form.resultImage} alt="after" />
-          </div>
-        </div>
-      ) : (
-        <div className={isBirthday ? "billboard-frame" : isAnimal ? "animal-frame" : ""}>
-          <img src={form.resultImage} alt="생성 결과" />
-        </div>
-      )}
-
-      <div className="result-buttons">
-        <a href={form.resultImage} download={`${feature.key}-result.png`}>저장하기</a>
-        <button onClick={retry}>다시 만들기</button>
-      </div>
-    </Card>
-  );
-}
-
 function makeSeed(input, daily = false) {
   const now = new Date();
   const key = daily ? `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}` : "";
@@ -1310,19 +1406,6 @@ function makeTopicLines(topic) {
     ];
   }
 
-  if (
-    lowerTopic.includes("연락") ||
-    lowerTopic.includes("사랑") ||
-    lowerTopic.includes("연애") ||
-    lowerTopic.includes("그 사람")
-  ) {
-    return [
-      `네가 물어본 **${topic}**은 바로 결론을 보려 하기보다 반응을 보는 날이야. 무겁게 확인하려고 하면 흐름이 닫힐 수 있어.`,
-      `오늘은 긴 메시지보다 짧고 자연스러운 말이 좋아. 상대가 답하기 쉬운 문장으로 시작해봐.`,
-      `반응이 늦어도 바로 부정적으로 해석하지 마. 오늘은 감정이 크게 보이는 날이라 작은 신호를 과하게 받아들일 수 있어.`,
-    ];
-  }
-
   return [
     `네가 물어본 **${topic}**은 오늘 바로 결론을 내기보다 방향을 잡는 게 중요해. 지금은 큰 선택보다 작은 정리가 먼저야.`,
     `가장 좋은 방식은 문제를 하나로 좁히는 거야. “뭘 해야 하지?”보다 “오늘 당장 하나만 한다면 뭘 하지?”로 바꿔봐.`,
@@ -1380,12 +1463,12 @@ function makeSajuData(form, score) {
     event:
       "둘은 사소한 연락 타이밍이나 약속 방식 때문에 서운함이 생길 수 있어. 그런데 이걸 피하지 않고 풀면 오히려 관계가 깊어지는 흐름이 있어.",
     lines: [
-      `사주에서 **년주**는 첫 이미지, **월주**는 생활 리듬, **일주**는 관계의 중심, **시주**는 깊은 속마음으로 봐. 이 둘은 겉으로 보이는 끌림보다 실제 리듬을 맞추는 게 핵심이야. 처음에는 단순히 끌린다고 느낄 수 있지만, 시간이 지나면 서로의 생활 속도와 감정 회복 방식이 훨씬 중요해져. 그래서 이 궁합은 초반의 설렘보다 중후반의 안정감이 관계를 결정하는 구조에 가까워.`,
-      `둘 사이에는 **편관과 정인**의 느낌이 섞여 있어. 편관은 긴장감과 자극, 정인은 이해와 보호를 뜻해. 그래서 신경 쓰이는데 동시에 조심스러운 관계가 만들어질 수 있어. 한쪽은 상대를 보며 긴장하고 더 잘하고 싶어지고, 다른 한쪽은 상대를 챙겨주고 싶어지는 흐름이 생겨. 이 조합은 무심한 관계가 되기 어렵고, 좋든 싫든 서로의 영향을 꽤 강하게 받는 편이야.`,
-      `좋을 때는 서로에게 없는 기운을 채워주는 느낌이 강해. 한쪽은 현실감을 주고, 다른 한쪽은 감정의 온도를 올려줘. 그래서 같이 있으면 생각보다 안정이 되거나, 반대로 평소보다 더 솔직해지는 순간이 생길 수 있어. 특히 둘 중 한 명이 지쳐 있을 때 다른 한 명이 분위기를 바꿔주는 역할을 하게 돼.`,
-      `다만 불안할 때는 한쪽은 말을 더 많이 하려 하고, 다른 한쪽은 말이 줄어들 수 있어. 이때 서로를 오해하기 쉬워. 말을 많이 하는 쪽은 “왜 피하지?”라고 느낄 수 있고, 조용해지는 쪽은 “왜 몰아붙이지?”라고 느낄 수 있어. 이 관계는 감정이 올라왔을 때 바로 결론을 내리기보다, 한 박자 쉬고 다시 말하는 습관이 필요해.`,
-      `이 관계를 오래 가져가려면 “누가 더 좋아하느냐”보다 **누가 더 안정적으로 관계 리듬을 유지하느냐**가 중요해. 사주 흐름상 감정의 세기보다 반복되는 태도가 더 크게 작용해. 매일 대단한 표현을 하지 않아도, 약속을 지키고 말투를 일정하게 유지하는 쪽이 관계를 깊게 만들어.`,
-      `결론적으로 이 궁합은 마음이 움직일 힘은 있지만, 서두르면 꼬이고 천천히 맞추면 깊어지는 조합이야. 중요한 건 감정 확인을 너무 자주 요구하지 않는 것, 그리고 무심한 척으로 상대를 시험하지 않는 거야. 이 두 가지만 조심하면 관계는 꽤 괜찮은 방향으로 갈 수 있어.`,
+      `사주에서 **년주**는 첫 이미지, **월주**는 생활 리듬, **일주**는 관계의 중심, **시주**는 깊은 속마음으로 봐. 이 둘은 겉으로 보이는 끌림보다 실제 리듬을 맞추는 게 핵심이야. 처음에는 단순히 끌린다고 느낄 수 있지만, 시간이 지나면 서로의 생활 속도와 감정 회복 방식이 훨씬 중요해져.`,
+      `둘 사이에는 **편관과 정인**의 느낌이 섞여 있어. 편관은 긴장감과 자극, 정인은 이해와 보호를 뜻해. 그래서 신경 쓰이는데 동시에 조심스러운 관계가 만들어질 수 있어. 한쪽은 상대를 보며 긴장하고 더 잘하고 싶어지고, 다른 한쪽은 상대를 챙겨주고 싶어지는 흐름이 생겨.`,
+      `좋을 때는 서로에게 없는 기운을 채워주는 느낌이 강해. 한쪽은 현실감을 주고, 다른 한쪽은 감정의 온도를 올려줘. 그래서 같이 있으면 생각보다 안정이 되거나, 반대로 평소보다 더 솔직해지는 순간이 생길 수 있어.`,
+      `다만 불안할 때는 한쪽은 말을 더 많이 하려 하고, 다른 한쪽은 말이 줄어들 수 있어. 이때 서로를 오해하기 쉬워. 말을 많이 하는 쪽은 “왜 피하지?”라고 느낄 수 있고, 조용해지는 쪽은 “왜 몰아붙이지?”라고 느낄 수 있어.`,
+      `이 관계를 오래 가져가려면 “누가 더 좋아하느냐”보다 **누가 더 안정적으로 관계 리듬을 유지하느냐**가 중요해. 사주 흐름상 감정의 세기보다 반복되는 태도가 더 크게 작용해.`,
+      `결론적으로 이 궁합은 마음이 움직일 힘은 있지만, 서두르면 꼬이고 천천히 맞추면 깊어지는 조합이야. 중요한 건 감정 확인을 너무 자주 요구하지 않는 것, 그리고 무심한 척으로 상대를 시험하지 않는 거야.`,
     ],
   };
 }
@@ -1445,10 +1528,10 @@ function makeMbtiData(form, score) {
       { icon: "💙", label: "서로에게 필요한 것", value: "이해와 배려, 솔직한 대화" },
     ],
     lines: [
-      `${my}와 ${partner}의 궁합은 사주가 아니라 **성향 차이**로 봐야 해. 핵심은 감정 표현 속도와 갈등 처리 방식이야. 이 둘은 같은 사건을 겪어도 받아들이는 순서가 다를 수 있어. 한쪽은 먼저 감정이 올라오고 나중에 논리를 붙이는 편이고, 다른 한쪽은 먼저 상황을 정리한 뒤 감정을 확인하는 편일 수 있어.`,
-      `한쪽은 바로 말해야 편하고, 다른 한쪽은 혼자 정리한 뒤 말이 나올 수 있어. 이 차이가 초반에는 매력이고 나중에는 서운함이 될 수 있어. 처음에는 “나랑 다르게 생각해서 신기하다”가 되지만, 관계가 깊어지면 “왜 이렇게 반응하지?”가 될 수 있거든.`,
-      `연락 스타일도 중요한 포인트야. 한쪽은 짧게 자주 이어지는 연락을 좋아하고, 다른 한쪽은 할 말이 있을 때 집중해서 대화하는 걸 좋아할 수 있어. 이때 연락 빈도를 애정의 증거로만 보면 문제가 생겨.`,
-      `결론은 **다름을 틀림으로 보지 않는 것**이야. 확인하고 싶으면 떠보지 말고 짧고 솔직하게 말하는 게 제일 좋아. “너 왜 그래?”보다 “나는 이런 반응이 조금 불안했어”가 훨씬 낫고, “알아서 해”보다 “나는 이렇게 해줬으면 좋겠어”가 훨씬 좋아.`,
+      `${my}와 ${partner}의 궁합은 사주가 아니라 **성향 차이**로 봐야 해. 핵심은 감정 표현 속도와 갈등 처리 방식이야. 이 둘은 같은 사건을 겪어도 받아들이는 순서가 다를 수 있어.`,
+      `한쪽은 바로 말해야 편하고, 다른 한쪽은 혼자 정리한 뒤 말이 나올 수 있어. 이 차이가 초반에는 매력이고 나중에는 서운함이 될 수 있어.`,
+      `연락 스타일도 중요한 포인트야. 한쪽은 짧게 자주 이어지는 연락을 좋아하고, 다른 한쪽은 할 말이 있을 때 집중해서 대화하는 걸 좋아할 수 있어.`,
+      `결론은 **다름을 틀림으로 보지 않는 것**이야. 확인하고 싶으면 떠보지 말고 짧고 솔직하게 말하는 게 제일 좋아.`,
     ],
   };
 }
