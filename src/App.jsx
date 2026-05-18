@@ -4,23 +4,76 @@ import "./App.css";
 const SITE_URL = "https://oursai.vercel.app";
 const KAKAO_JS_KEY = "392f84c5486937d26780349c72b4a1d8";
 
-const mbtiList = ["ISTJ","ISFJ","INFJ","INTJ","ISTP","ISFP","INFP","INTP","ESTP","ESFP","ENFP","ENTP","ESTJ","ESFJ","ENFJ","ENTJ"];
+const mbtiList = [
+  "ISTJ","ISFJ","INFJ","INTJ",
+  "ISTP","ISFP","INFP","INTP",
+  "ESTP","ESFP","ENFP","ENTP",
+  "ESTJ","ESFJ","ENFJ","ENTJ",
+];
+
 const relations = ["모름", "친구(썸)", "연애 중", "짝사랑", "전 연인", "부부"];
 const genderList = ["모름", "남자", "여자"];
 const calendarList = ["양력", "음력"];
-const birthHours = ["모름","자시 23:30~01:29","축시 01:30~03:29","인시 03:30~05:29","묘시 05:30~07:29","진시 07:30~09:29","사시 09:30~11:29","오시 11:30~13:29","미시 13:30~15:29","신시 15:30~17:29","유시 17:30~19:29","술시 19:30~21:29","해시 21:30~23:29"];
+
+const birthHours = [
+  "모름",
+  "자시 23:30~01:29",
+  "축시 01:30~03:29",
+  "인시 03:30~05:29",
+  "묘시 05:30~07:29",
+  "진시 07:30~09:29",
+  "사시 09:30~11:29",
+  "오시 11:30~13:29",
+  "미시 13:30~15:29",
+  "신시 15:30~17:29",
+  "유시 17:30~19:29",
+  "술시 19:30~21:29",
+  "해시 21:30~23:29",
+];
 
 const coinPacks = [
-  { id: "coin1", title: "1코인", coins: 1, price: 990, desc: "가볍게 한 번 만들기" },
-  { id: "coin10", title: "10코인", coins: 10, price: 9000, desc: "자주 쓸 사람 추천" },
+  {
+    id: "coin1",
+    title: "1코인",
+    coins: 1,
+    price: 990,
+    desc: "가볍게 한 번 만들기",
+  },
+  {
+    id: "coin10",
+    title: "10코인",
+    coins: 10,
+    price: 9000,
+    desc: "자주 쓸 사람 추천",
+  },
 ];
 
 const fortuneImages = [
-  "001_lucky_shop.png","002_morning_sun.png","003_night_sky.png","004_love_heart.png","005_rain_umbrella.png",
-  "006_coffee_break.png","007_studying.png","008_reading_book.png","009_writing.png","010_relaxed_couch.png",
-  "023_letter.png","024_phone_call.png","025_message.png","045_calendar.png","048_checklist.png",
-  "050_idea_bulb.png","051_success.png","061_shopping_bag.png","063_coins.png","071_door_open.png",
-  "075_thinking.png","077_excited.png","083_alarm_clock.png","091_cloud.png","094_four_leaf_clover.png",
+  "001_lucky_shop.png",
+  "002_morning_sun.png",
+  "003_night_sky.png",
+  "004_love_heart.png",
+  "005_rain_umbrella.png",
+  "006_coffee_break.png",
+  "007_studying.png",
+  "008_reading_book.png",
+  "009_writing.png",
+  "010_relaxed_couch.png",
+  "023_letter.png",
+  "024_phone_call.png",
+  "025_message.png",
+  "045_calendar.png",
+  "048_checklist.png",
+  "050_idea_bulb.png",
+  "051_success.png",
+  "061_shopping_bag.png",
+  "063_coins.png",
+  "071_door_open.png",
+  "075_thinking.png",
+  "077_excited.png",
+  "083_alarm_clock.png",
+  "091_cloud.png",
+  "094_four_leaf_clover.png",
 ];
 
 const songPool = [
@@ -33,29 +86,44 @@ const songPool = [
 ];
 
 const colors = [
-  { name: "블랙", cls: "black", text: "중심을 잡고 싶을 때 좋아. 말보다 분위기로 설득되는 날이야." },
-  { name: "네이비", cls: "navy", text: "신뢰감과 차분함이 필요한 날에 잘 맞아." },
-  { name: "베이지", cls: "beige", text: "부드러운 인상을 만들고 관계운을 열어줘." },
-  { name: "화이트", cls: "white", text: "복잡한 생각을 덜어내고 깔끔한 흐름을 만들어줘." },
-  { name: "레드", cls: "red", text: "존재감과 추진력이 필요한 순간에 좋아." },
-  { name: "블루", cls: "blue", text: "말실수 줄이고 차분한 대화를 돕는 색이야." },
-];
-
-const itemPool = [
-  ["거울", "표정과 말투가 운을 바꿔. 나가기 전에 한 번 정리해."],
-  ["작은 노트", "생각이 흩어지는 날이라 적는 순간 흐름이 잡혀."],
-  ["향수", "사람 운이 들어오는 날. 은은한 인상이 오래 남아."],
-  ["텀블러", "급하게 움직이면 흐름이 깨져. 한 박자 늦춰."],
-  ["이어폰", "노래 하나가 오늘 분위기를 바꿔."],
-  ["손목시계", "타이밍 운이 중요해. 늦지 않는 것만으로도 이기는 날이야."],
+  {
+    name: "블랙",
+    cls: "black",
+    text: "중심을 잡고 싶을 때 좋아. 말보다 분위기로 설득되는 날이야.",
+  },
+  {
+    name: "네이비",
+    cls: "navy",
+    text: "신뢰감과 차분함이 필요한 날에 잘 맞아.",
+  },
+  {
+    name: "베이지",
+    cls: "beige",
+    text: "부드러운 인상을 만들고 관계운을 열어줘.",
+  },
+  {
+    name: "화이트",
+    cls: "white",
+    text: "복잡한 생각을 덜어내고 깔끔한 흐름을 만들어줘.",
+  },
+  {
+    name: "레드",
+    cls: "red",
+    text: "존재감과 추진력이 필요한 순간에 좋아.",
+  },
+  {
+    name: "블루",
+    cls: "blue",
+    text: "말실수 줄이고 차분한 대화를 돕는 색이야.",
+  },
 ];
 
 const featureList = [
-  ["birthday", "생일 전광판", "사진, 이름, 생년월일로 전광판 만들기"],
-  ["animal", "커플 동물상", "커플 사진을 동물상 콘셉트로"],
+  ["birthday", "생일 전광판", "사진과 생일 날짜로 전광판 만들기"],
+  ["animal", "커플 동물상", "사진을 동물상 콘셉트로 변환"],
   ["young", "어려지는 사진", "귀여운 어린 시절 분위기로 변환"],
   ["comic", "순정만화 속 우리", "만화 주인공 분위기로 변환"],
-  ["travel", "여행 감성 콜라주", "사진 여러 장을 감성 기록으로"],
+  ["travel", "여행 감성 콜라주", "사진을 감성 기록으로 변환"],
   ["color", "퍼스널컬러 분석", "컬러, 분위기, 스타일 리포트"],
   ["hair", "헤어스타일 추천", "얼굴형 기반 스타일 추천"],
   ["palm", "손금 분석", "손바닥 사진 기반 리포트"],
@@ -67,12 +135,12 @@ export default function App() {
   const [selectedFeature, setSelectedFeature] = useState(featureList[0]);
 
   const [coins, setCoins] = useState(() => {
-    const joined = localStorage.getItem("woorisai_joined_v4");
-    const saved = localStorage.getItem("woorisai_coins_v4");
+    const joined = localStorage.getItem("woorisai_joined_v6");
+    const saved = localStorage.getItem("woorisai_coins_v6");
 
     if (!joined) {
-      localStorage.setItem("woorisai_joined_v4", "true");
-      localStorage.setItem("woorisai_coins_v4", "3");
+      localStorage.setItem("woorisai_joined_v6", "true");
+      localStorage.setItem("woorisai_coins_v6", "3");
       return 3;
     }
 
@@ -80,11 +148,11 @@ export default function App() {
   });
 
   const [unlocked, setUnlocked] = useState(() => {
-    return JSON.parse(localStorage.getItem("woorisai_unlocked_v4") || "{}");
+    return JSON.parse(localStorage.getItem("woorisai_unlocked_v6") || "{}");
   });
 
   const [savedPeople, setSavedPeople] = useState(() => {
-    return JSON.parse(localStorage.getItem("woorisai_people_v10") || "[]");
+    return JSON.parse(localStorage.getItem("woorisai_people_v12") || "[]");
   });
 
   const [fortuneForm, setFortuneForm] = useState({
@@ -123,22 +191,27 @@ export default function App() {
   });
 
   const [featureForm, setFeatureForm] = useState({
-    name: "",
-    birth: "",
+    birthday: "",
     place: "",
-    memo: "",
     fileName: "",
     imageBase64: "",
     mimeType: "",
     previewUrl: "",
-    result: "",
     resultImage: "",
     loading: false,
   });
 
-  useEffect(() => localStorage.setItem("woorisai_coins_v4", String(coins)), [coins]);
-  useEffect(() => localStorage.setItem("woorisai_unlocked_v4", JSON.stringify(unlocked)), [unlocked]);
-  useEffect(() => localStorage.setItem("woorisai_people_v10", JSON.stringify(savedPeople)), [savedPeople]);
+  useEffect(() => {
+    localStorage.setItem("woorisai_coins_v6", String(coins));
+  }, [coins]);
+
+  useEffect(() => {
+    localStorage.setItem("woorisai_unlocked_v6", JSON.stringify(unlocked));
+  }, [unlocked]);
+
+  useEffect(() => {
+    localStorage.setItem("woorisai_people_v12", JSON.stringify(savedPeople));
+  }, [savedPeople]);
 
   const fortune = useMemo(() => makeDailyFortune(fortuneForm), [fortuneForm]);
   const sajuScore = useMemo(() => makeSajuScore(form), [form]);
@@ -155,7 +228,9 @@ export default function App() {
   const share = async () => {
     try {
       if (window.Kakao) {
-        if (!window.Kakao.isInitialized()) window.Kakao.init(KAKAO_JS_KEY);
+        if (!window.Kakao.isInitialized()) {
+          window.Kakao.init(KAKAO_JS_KEY);
+        }
 
         window.Kakao.Share.sendDefault({
           objectType: "feed",
@@ -163,12 +238,18 @@ export default function App() {
             title: "우리 사이 🐢💛",
             description: "오늘의 운세랑 궁합을 확인해봐",
             imageUrl: `${SITE_URL}/turtle_500x500.png`,
-            link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL },
+            link: {
+              mobileWebUrl: SITE_URL,
+              webUrl: SITE_URL,
+            },
           },
           buttons: [
             {
               title: "나도 해보기",
-              link: { mobileWebUrl: SITE_URL, webUrl: SITE_URL },
+              link: {
+                mobileWebUrl: SITE_URL,
+                webUrl: SITE_URL,
+              },
             },
           ],
         });
@@ -190,82 +271,86 @@ export default function App() {
     }
   };
 
-  const savePerson = (p) => {
-    if (!p.name) return;
-    const clean = { ...p };
-    setSavedPeople((prev) => [clean, ...prev.filter((x) => x.name !== clean.name)].slice(0, 12));
+  const savePerson = (person) => {
+    if (!person.name) return;
+
+    const clean = { ...person };
+
+    setSavedPeople((prev) => {
+      return [clean, ...prev.filter((x) => x.name !== clean.name)].slice(0, 12);
+    });
   };
 
   const loadPerson = (target, name) => {
-    const p = savedPeople.find((x) => x.name === name);
-    if (!p) return;
+    const person = savedPeople.find((x) => x.name === name);
+    if (!person) return;
 
     if (target === "fortune") {
       setFortuneForm({
         ...fortuneForm,
-        name: p.name,
-        year: p.year,
-        month: p.month,
-        day: p.day,
-        mbti: p.mbti || "",
+        name: person.name,
+        year: person.year,
+        month: person.month,
+        day: person.day,
+        mbti: person.mbti || "",
       });
     }
 
     if (target === "me") {
       setForm({
         ...form,
-        myName: p.name,
-        myGender: p.gender || "모름",
-        myCalendar: p.calendar || "양력",
-        myYear: p.year,
-        myMonth: p.month,
-        myDay: p.day,
-        myBirthHour: p.birthHour || "모름",
-        myBirthCity: p.birthCity || "",
-        myMbti: p.mbti || "",
+        myName: person.name,
+        myGender: person.gender || "모름",
+        myCalendar: person.calendar || "양력",
+        myYear: person.year,
+        myMonth: person.month,
+        myDay: person.day,
+        myBirthHour: person.birthHour || "모름",
+        myBirthCity: person.birthCity || "",
+        myMbti: person.mbti || "",
       });
     }
 
     if (target === "partner") {
       setForm({
         ...form,
-        partnerName: p.name,
-        partnerGender: p.gender || "모름",
-        partnerCalendar: p.calendar || "양력",
-        partnerYear: p.year,
-        partnerMonth: p.month,
-        partnerDay: p.day,
-        partnerBirthHour: p.birthHour || "모름",
-        partnerBirthCity: p.birthCity || "",
-        partnerMbti: p.mbti || "",
+        partnerName: person.name,
+        partnerGender: person.gender || "모름",
+        partnerCalendar: person.calendar || "양력",
+        partnerYear: person.year,
+        partnerMonth: person.month,
+        partnerDay: person.day,
+        partnerBirthHour: person.birthHour || "모름",
+        partnerBirthCity: person.birthCity || "",
+        partnerMbti: person.mbti || "",
       });
     }
   };
 
   const updateFortune = (key, value, max) => {
+    const numeric = ["year", "month", "day"].includes(key);
+
     setFortuneForm({
       ...fortuneForm,
-      [key]: ["year", "month", "day"].includes(key)
-        ? value.replace(/\D/g, "").slice(0, max)
-        : value,
+      [key]: numeric ? value.replace(/\D/g, "").slice(0, max) : value,
     });
   };
 
   const updateForm = (key, value, max) => {
+    const numeric = [
+      "myYear",
+      "myMonth",
+      "myDay",
+      "partnerYear",
+      "partnerMonth",
+      "partnerDay",
+      "metYear",
+      "metMonth",
+    ].includes(key);
+
     setForm({
       ...form,
-      [key]: [
-        "myYear",
-        "myMonth",
-        "myDay",
-        "partnerYear",
-        "partnerMonth",
-        "partnerDay",
-        "metYear",
-        "metMonth",
-      ].includes(key)
-        ? value.replace(/\D/g, "").slice(0, max)
-        : value,
+      [key]: numeric ? value.replace(/\D/g, "").slice(0, max) : value,
     });
   };
 
@@ -293,15 +378,12 @@ export default function App() {
   const openFeature = (feature) => {
     setSelectedFeature(feature);
     setFeatureForm({
-      name: "",
-      birth: "",
+      birthday: "",
       place: "",
-      memo: "",
       fileName: "",
       imageBase64: "",
       mimeType: "",
       previewUrl: "",
-      result: "",
       resultImage: "",
       loading: false,
     });
@@ -329,7 +411,6 @@ export default function App() {
         mimeType: file.type,
         previewUrl: result,
         resultImage: "",
-        result: "",
       }));
     };
 
@@ -348,13 +429,17 @@ export default function App() {
       return;
     }
 
+    if (selectedFeature.key === "birthday" && !featureForm.birthday.trim()) {
+      alert("생일 날짜를 입력해줘.");
+      return;
+    }
+
     const prompt = makeFeaturePrompt(selectedFeature.key, featureForm);
 
     try {
       setFeatureForm((prev) => ({
         ...prev,
         loading: true,
-        result: prompt,
         resultImage: "",
       }));
 
@@ -375,7 +460,10 @@ export default function App() {
       if (!response.ok) {
         console.log(data);
         alert(data?.error || "이미지 생성에 실패했어.");
-        setFeatureForm((prev) => ({ ...prev, loading: false }));
+        setFeatureForm((prev) => ({
+          ...prev,
+          loading: false,
+        }));
         return;
       }
 
@@ -389,7 +477,10 @@ export default function App() {
     } catch (error) {
       console.error(error);
       alert("이미지 생성 중 오류가 났어.");
-      setFeatureForm((prev) => ({ ...prev, loading: false }));
+      setFeatureForm((prev) => ({
+        ...prev,
+        loading: false,
+      }));
     }
   };
 
@@ -402,8 +493,13 @@ export default function App() {
 
       <div className="drawer-line" />
 
-      {featureList.map((f) => (
-        <DrawerItem key={f.key} title={f.title} desc={f.desc} onClick={() => openFeature(f)} />
+      {featureList.map((feature) => (
+        <DrawerItem
+          key={feature.key}
+          title={feature.title}
+          desc={feature.desc}
+          onClick={() => openFeature(feature)}
+        />
       ))}
 
       <div className="drawer-line" />
@@ -457,20 +553,20 @@ export default function App() {
           <h3>충전하기</h3>
           <p className="soft-text">지금은 테스트라 버튼을 누르면 바로 충전돼. 실제 배포 전 토스 결제로 연결하면 돼.</p>
 
-          {coinPacks.map((p) => (
+          {coinPacks.map((pack) => (
             <button
-              key={p.id}
+              key={pack.id}
               className="coin-pack"
               onClick={() => {
-                setCoins(coins + p.coins);
-                alert(`${p.coins}코인 충전 완료`);
+                setCoins((prev) => prev + pack.coins);
+                alert(`${pack.coins}코인 충전 완료`);
               }}
             >
               <div>
-                <b>{p.title}</b>
-                <p>{p.desc}</p>
+                <b>{pack.title}</b>
+                <p>{pack.desc}</p>
               </div>
-              <strong>{p.price.toLocaleString()}원</strong>
+              <strong>{pack.price.toLocaleString()}원</strong>
             </button>
           ))}
         </Card>
@@ -488,22 +584,40 @@ export default function App() {
         <Card>
           <Guide text="오늘 흐름을 보려면 정보를 입력해줘!" />
 
-          <SavedPicker people={savedPeople} label="최근 입력한 정보" onSelect={(n) => loadPerson("fortune", n)} />
+          <SavedPicker people={savedPeople} label="최근 입력한 정보" onSelect={(name) => loadPerson("fortune", name)} />
 
           <label>이름</label>
-          <input value={fortuneForm.name} onChange={(e) => updateFortune("name", e.target.value)} placeholder="이름" />
+          <input
+            value={fortuneForm.name}
+            onChange={(e) => updateFortune("name", e.target.value)}
+            placeholder="이름"
+          />
 
           <label>생년월일</label>
           <div className="date-row">
-            <input placeholder="1998" value={fortuneForm.year} onChange={(e) => updateFortune("year", e.target.value, 4)} />
-            <input placeholder="05" value={fortuneForm.month} onChange={(e) => updateFortune("month", e.target.value, 2)} />
-            <input placeholder="14" value={fortuneForm.day} onChange={(e) => updateFortune("day", e.target.value, 2)} />
+            <input
+              placeholder="1998"
+              value={fortuneForm.year}
+              onChange={(e) => updateFortune("year", e.target.value, 4)}
+            />
+            <input
+              placeholder="05"
+              value={fortuneForm.month}
+              onChange={(e) => updateFortune("month", e.target.value, 2)}
+            />
+            <input
+              placeholder="14"
+              value={fortuneForm.day}
+              onChange={(e) => updateFortune("day", e.target.value, 2)}
+            />
           </div>
 
           <label>MBTI</label>
           <select value={fortuneForm.mbti} onChange={(e) => updateFortune("mbti", e.target.value)}>
             <option value="">모름</option>
-            {mbtiList.map((m) => <option key={m}>{m}</option>)}
+            {mbtiList.map((mbti) => (
+              <option key={mbti}>{mbti}</option>
+            ))}
           </select>
 
           <label>오늘 특별히 알고 싶은 것</label>
@@ -516,7 +630,10 @@ export default function App() {
           <button
             className="main-btn"
             onClick={() => {
-              if (!fortuneForm.name) return alert("이름은 입력해줘.");
+              if (!fortuneForm.name) {
+                alert("이름은 입력해줘.");
+                return;
+              }
 
               savePerson({
                 name: fortuneForm.name,
@@ -607,21 +724,48 @@ export default function App() {
 
         <Guide text={isSaju ? "사주는 생년월일과 태어난 시간이 중요해!" : "MBTI 궁합은 성향만 따로 볼게!"} />
 
-        <PersonCard title="🟡 내 정보" target="my" form={form} update={updateForm} isSaju={isSaju} people={savedPeople} load={(n) => loadPerson("me", n)} />
-        <PersonCard title="🟢 상대 정보" target="partner" form={form} update={updateForm} isSaju={isSaju} people={savedPeople} load={(n) => loadPerson("partner", n)} />
+        <PersonCard
+          title="🟡 내 정보"
+          target="my"
+          form={form}
+          update={updateForm}
+          isSaju={isSaju}
+          people={savedPeople}
+          load={(name) => loadPerson("me", name)}
+        />
+
+        <PersonCard
+          title="🟢 상대 정보"
+          target="partner"
+          form={form}
+          update={updateForm}
+          isSaju={isSaju}
+          people={savedPeople}
+          load={(name) => loadPerson("partner", name)}
+        />
 
         <Card>
           <h3>💗 우리 관계</h3>
 
           <label>처음 만난 달</label>
           <div className="date-row two">
-            <input placeholder="2024" value={form.metYear} onChange={(e) => updateForm("metYear", e.target.value, 4)} />
-            <input placeholder="11" value={form.metMonth} onChange={(e) => updateForm("metMonth", e.target.value, 2)} />
+            <input
+              placeholder="2024"
+              value={form.metYear}
+              onChange={(e) => updateForm("metYear", e.target.value, 4)}
+            />
+            <input
+              placeholder="11"
+              value={form.metMonth}
+              onChange={(e) => updateForm("metMonth", e.target.value, 2)}
+            />
           </div>
 
           <label>관계</label>
           <select value={form.relation} onChange={(e) => updateForm("relation", e.target.value)}>
-            {relations.map((r) => <option key={r}>{r}</option>)}
+            {relations.map((relation) => (
+              <option key={relation}>{relation}</option>
+            ))}
           </select>
         </Card>
 
@@ -665,7 +809,15 @@ export default function App() {
 
   if (mode === "sajuResult") {
     return (
-      <ResultShell drawer={drawer} title="사주 궁합 결과" score={sajuScore} coins={coins} back={() => go("home")} share={share} menu={() => setDrawerOpen(true)}>
+      <ResultShell
+        drawer={drawer}
+        title="사주 궁합 결과"
+        score={sajuScore}
+        coins={coins}
+        back={() => go("home")}
+        share={share}
+        menu={() => setDrawerOpen(true)}
+      >
         <Card className="summary-card">
           <h3>한 줄 요약</h3>
           <p>{saju.summary}</p>
@@ -680,7 +832,9 @@ export default function App() {
           <h3>사주 구성표</h3>
           <SajuTable title="내 사주" data={saju.myTable} />
           <SajuTable title="상대 사주" data={saju.partnerTable} />
-          <p className="saju-warning">현재는 앱 내부 간이 계산이야. 실제 만세력 API를 붙이면 을목/정화/대운/세운까지 더 정확하게 맞출 수 있어.</p>
+          <p className="saju-warning">
+            현재는 앱 내부 간이 계산이야. 실제 만세력 API를 붙이면 을목/정화/대운/세운까지 더 정확하게 맞출 수 있어.
+          </p>
         </Card>
 
         <Card>
@@ -700,7 +854,15 @@ export default function App() {
 
   if (mode === "mbtiResult") {
     return (
-      <ResultShell drawer={drawer} title="MBTI 궁합 결과" score={mbtiScore} coins={coins} back={() => go("home")} share={share} menu={() => setDrawerOpen(true)}>
+      <ResultShell
+        drawer={drawer}
+        title="MBTI 궁합 결과"
+        score={mbtiScore}
+        coins={coins}
+        back={() => go("home")}
+        share={share}
+        menu={() => setDrawerOpen(true)}
+      >
         <Card className="summary-card">
           <h3>한 줄 요약</h3>
           <p>{mbti.summary}</p>
@@ -728,6 +890,9 @@ export default function App() {
   }
 
   if (mode === "feature") {
+    const isBirthday = selectedFeature.key === "birthday";
+    const isTravel = selectedFeature.key === "travel";
+
     return (
       <Phone>
         {drawer}
@@ -741,26 +906,27 @@ export default function App() {
         </Card>
 
         <Card>
-          <label>이름</label>
-          <input
-            value={featureForm.name}
-            onChange={(e) => setFeatureForm({ ...featureForm, name: e.target.value })}
-            placeholder="이름 또는 닉네임"
-          />
+          {isBirthday && (
+            <>
+              <label>생일 날짜</label>
+              <input
+                value={featureForm.birthday}
+                onChange={(e) => setFeatureForm({ ...featureForm, birthday: e.target.value })}
+                placeholder="예: 1월 12일 / 1999.08.23"
+              />
+            </>
+          )}
 
-          <label>생년월일 / 기념일</label>
-          <input
-            value={featureForm.birth}
-            onChange={(e) => setFeatureForm({ ...featureForm, birth: e.target.value })}
-            placeholder="예: 1999.08.23"
-          />
-
-          <label>장소 / 분위기</label>
-          <input
-            value={featureForm.place}
-            onChange={(e) => setFeatureForm({ ...featureForm, place: e.target.value })}
-            placeholder="예: 제주도, 지하철, 카페"
-          />
+          {isTravel && (
+            <>
+              <label>여행지</label>
+              <input
+                value={featureForm.place}
+                onChange={(e) => setFeatureForm({ ...featureForm, place: e.target.value })}
+                placeholder="예: 제주도, 부산, 도쿄"
+              />
+            </>
+          )}
 
           <label>사진 업로드</label>
           <input
@@ -769,23 +935,12 @@ export default function App() {
             onChange={(e) => handleFeatureFile(e.target.files?.[0])}
           />
 
-          {featureForm.fileName && (
-            <p className="soft-text">선택한 사진: {featureForm.fileName}</p>
-          )}
-
           {featureForm.previewUrl && (
             <div className="image-preview-box">
               <p>업로드한 사진</p>
               <img src={featureForm.previewUrl} alt="업로드 미리보기" />
             </div>
           )}
-
-          <label>추가 요청</label>
-          <textarea
-            value={featureForm.memo}
-            onChange={(e) => setFeatureForm({ ...featureForm, memo: e.target.value })}
-            placeholder="원하는 분위기나 문구"
-          />
 
           <button className="main-btn" onClick={generateFeature} disabled={featureForm.loading}>
             {featureForm.loading ? "만드는 중..." : "1코인 사용하고 만들기"}
@@ -794,8 +949,8 @@ export default function App() {
           {featureForm.loading && (
             <div className="loading-card">
               <img src="/turtle-heart.png" alt="" />
-              <b>이미지를 만들고 있어</b>
-              <p>사진과 프롬프트를 바탕으로 결과를 생성 중이야.</p>
+              <b>결과물을 만들고 있어</b>
+              <p>업로드한 사진을 바탕으로 이미지를 생성 중이야.</p>
             </div>
           )}
         </Card>
@@ -807,13 +962,6 @@ export default function App() {
             <a className="download-btn" href={featureForm.resultImage} download={`${selectedFeature.key}-result.png`}>
               이미지 저장하기
             </a>
-          </Card>
-        )}
-
-        {featureForm.result && (
-          <Card className="prompt-card">
-            <h3>사용된 생성 프롬프트</h3>
-            <p>{featureForm.result}</p>
           </Card>
         )}
       </Phone>
@@ -908,9 +1056,9 @@ function SavedPicker({ people, label, onSelect }) {
       <label>{label}</label>
       <select onChange={(e) => e.target.value && onSelect(e.target.value)}>
         <option value="">불러오기</option>
-        {people.map((p) => (
-          <option key={p.name} value={p.name}>
-            {p.name} · {p.year || "모름"}.{p.month || "모름"}.{p.day || "모름"} · {p.mbti || "모름"}
+        {people.map((person) => (
+          <option key={person.name} value={person.name}>
+            {person.name} · {person.year || "모름"}.{person.month || "모름"}.{person.day || "모름"} · {person.mbti || "모름"}
           </option>
         ))}
       </select>
@@ -928,45 +1076,73 @@ function PersonCard({ title, target, form, update, isSaju, people, load }) {
       <SavedPicker people={people} label="최근 입력 정보" onSelect={load} />
 
       <label>이름</label>
-      <input value={form[`${prefix}Name`]} onChange={(e) => update(`${prefix}Name`, e.target.value)} placeholder="이름" />
+      <input
+        value={form[`${prefix}Name`]}
+        onChange={(e) => update(`${prefix}Name`, e.target.value)}
+        placeholder="이름"
+      />
 
       {isSaju && (
         <>
           <label>성별</label>
           <select value={form[`${prefix}Gender`]} onChange={(e) => update(`${prefix}Gender`, e.target.value)}>
-            {genderList.map((g) => <option key={g}>{g}</option>)}
+            {genderList.map((gender) => (
+              <option key={gender}>{gender}</option>
+            ))}
           </select>
 
           <label>양력 / 음력</label>
           <select value={form[`${prefix}Calendar`]} onChange={(e) => update(`${prefix}Calendar`, e.target.value)}>
-            {calendarList.map((c) => <option key={c}>{c}</option>)}
+            {calendarList.map((calendar) => (
+              <option key={calendar}>{calendar}</option>
+            ))}
           </select>
         </>
       )}
 
       <label>생년월일</label>
       <div className="date-row">
-        <input placeholder="1998" value={form[`${prefix}Year`]} onChange={(e) => update(`${prefix}Year`, e.target.value, 4)} />
-        <input placeholder="05" value={form[`${prefix}Month`]} onChange={(e) => update(`${prefix}Month`, e.target.value, 2)} />
-        <input placeholder="14" value={form[`${prefix}Day`]} onChange={(e) => update(`${prefix}Day`, e.target.value, 2)} />
+        <input
+          placeholder="1998"
+          value={form[`${prefix}Year`]}
+          onChange={(e) => update(`${prefix}Year`, e.target.value, 4)}
+        />
+        <input
+          placeholder="05"
+          value={form[`${prefix}Month`]}
+          onChange={(e) => update(`${prefix}Month`, e.target.value, 2)}
+        />
+        <input
+          placeholder="14"
+          value={form[`${prefix}Day`]}
+          onChange={(e) => update(`${prefix}Day`, e.target.value, 2)}
+        />
       </div>
 
       {isSaju && (
         <>
           <label>태어난 시간</label>
           <select value={form[`${prefix}BirthHour`]} onChange={(e) => update(`${prefix}BirthHour`, e.target.value)}>
-            {birthHours.map((h) => <option key={h}>{h}</option>)}
+            {birthHours.map((hour) => (
+              <option key={hour}>{hour}</option>
+            ))}
           </select>
 
           <label>태어난 지역</label>
-          <input value={form[`${prefix}BirthCity`]} onChange={(e) => update(`${prefix}BirthCity`, e.target.value)} placeholder="예: 서울, 천안" />
+          <input
+            value={form[`${prefix}BirthCity`]}
+            onChange={(e) => update(`${prefix}BirthCity`, e.target.value)}
+            placeholder="예: 서울, 천안"
+          />
         </>
       )}
 
       <label>MBTI</label>
       <select value={form[`${prefix}Mbti`]} onChange={(e) => update(`${prefix}Mbti`, e.target.value)}>
         <option value="">모름</option>
-        {mbtiList.map((m) => <option key={m}>{m}</option>)}
+        {mbtiList.map((mbti) => (
+          <option key={mbti}>{mbti}</option>
+        ))}
       </select>
     </Card>
   );
@@ -1059,7 +1235,11 @@ function Locked({ unlocked, onUnlock, children }) {
 function Paragraphs({ lines }) {
   return (
     <div className="paragraphs">
-      {lines.map((line, i) => <p key={i}><Bold text={line} /></p>)}
+      {lines.map((line, index) => (
+        <p key={index}>
+          <Bold text={line} />
+        </p>
+      ))}
     </div>
   );
 }
@@ -1067,10 +1247,10 @@ function Paragraphs({ lines }) {
 function Bold({ text }) {
   return (
     <>
-      {text.split(/(\*\*.*?\*\*)/g).map((p, i) =>
-        p.startsWith("**") && p.endsWith("**")
-          ? <strong key={i}>{p.slice(2, -2)}</strong>
-          : <span key={i}>{p}</span>
+      {text.split(/(\*\*.*?\*\*)/g).map((part, index) =>
+        part.startsWith("**") && part.endsWith("**")
+          ? <strong key={index}>{part.slice(2, -2)}</strong>
+          : <span key={index}>{part}</span>
       )}
     </>
   );
@@ -1080,11 +1260,37 @@ function SajuTable({ title, data }) {
   return (
     <div className="saju-card">
       <h4>{title}</h4>
-      <div className="saju-head"><span>시주</span><span>일주</span><span>월주</span><span>년주</span></div>
-      <div className="saju-row gods">{data.topGods.map((x, i) => <span key={i}>{x}</span>)}</div>
-      <div className="saju-row boxes">{data.top.map((x, i) => <SajuBox key={i} item={x} />)}</div>
-      <div className="saju-row boxes">{data.bottom.map((x, i) => <SajuBox key={i} item={x} />)}</div>
-      <div className="saju-row gods">{data.bottomGods.map((x, i) => <span key={i}>{x}</span>)}</div>
+
+      <div className="saju-head">
+        <span>시주</span>
+        <span>일주</span>
+        <span>월주</span>
+        <span>년주</span>
+      </div>
+
+      <div className="saju-row gods">
+        {data.topGods.map((god, index) => (
+          <span key={index}>{god}</span>
+        ))}
+      </div>
+
+      <div className="saju-row boxes">
+        {data.top.map((item, index) => (
+          <SajuBox key={index} item={item} />
+        ))}
+      </div>
+
+      <div className="saju-row boxes">
+        {data.bottom.map((item, index) => (
+          <SajuBox key={index} item={item} />
+        ))}
+      </div>
+
+      <div className="saju-row gods">
+        {data.bottomGods.map((god, index) => (
+          <span key={index}>{god}</span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -1101,9 +1307,15 @@ function SajuBox({ item }) {
 function MbtiBadge({ my, partner }) {
   return (
     <div className="mbti-badge">
-      <div><b>{my || "ME"}</b><span>나</span></div>
+      <div>
+        <b>{my || "ME"}</b>
+        <span>나</span>
+      </div>
       <strong>×</strong>
-      <div><b>{partner || "YOU"}</b><span>상대</span></div>
+      <div>
+        <b>{partner || "YOU"}</b>
+        <span>상대</span>
+      </div>
     </div>
   );
 }
@@ -1111,10 +1323,10 @@ function MbtiBadge({ my, partner }) {
 function MbtiTable({ rows }) {
   return (
     <div className="mbti-table">
-      {rows.map((r) => (
-        <div key={r.label}>
-          <b>{r.label}</b>
-          <span>{r.value}</span>
+      {rows.map((row) => (
+        <div key={row.label}>
+          <b>{row.label}</b>
+          <span>{row.value}</span>
         </div>
       ))}
     </div>
@@ -1138,12 +1350,12 @@ function pickImage(seed, offset = 0) {
   return fortuneImages[Math.abs(seed + offset) % fortuneImages.length];
 }
 
-function clamp(n) {
-  return Math.max(0, Math.min(100, n));
+function clamp(number) {
+  return Math.max(0, Math.min(100, number));
 }
 
-function mod(n, m) {
-  return ((n % m) + m) % m;
+function mod(number, divisor) {
+  return ((number % divisor) + divisor) % divisor;
 }
 
 function makeDailyFortune(input) {
@@ -1195,9 +1407,14 @@ function makeDailyFortune(input) {
 }
 
 function makeTopicLines(topic) {
-  const t = topic.toLowerCase();
+  const lowerTopic = topic.toLowerCase();
 
-  if (t.includes("면접") || t.includes("이직") || t.includes("취업") || t.includes("회사")) {
+  if (
+    lowerTopic.includes("면접") ||
+    lowerTopic.includes("이직") ||
+    lowerTopic.includes("취업") ||
+    lowerTopic.includes("회사")
+  ) {
     return [
       `네가 물어본 **${topic}**은 오늘 현실적인 판단이 중요한 주제야. 말은 길게 하기보다 “내가 뭘 해왔고, 어떤 문제를 해결할 수 있는지”를 짧고 분명하게 보여주는 게 좋아.`,
       `면접이나 이직 흐름이라면 오늘은 **경험을 숫자와 사례로 말하는 것**이 운을 올려줘. 막연히 열심히 한다보다 공정, 설비, 개선, 문제 해결 경험을 구체적으로 말해야 해.`,
@@ -1205,7 +1422,12 @@ function makeTopicLines(topic) {
     ];
   }
 
-  if (t.includes("연락") || t.includes("사랑") || t.includes("연애") || t.includes("그 사람")) {
+  if (
+    lowerTopic.includes("연락") ||
+    lowerTopic.includes("사랑") ||
+    lowerTopic.includes("연애") ||
+    lowerTopic.includes("그 사람")
+  ) {
     return [
       `네가 물어본 **${topic}**은 바로 결론을 보려 하기보다 반응을 보는 날이야. 무겁게 확인하려고 하면 흐름이 닫힐 수 있어.`,
       `오늘은 긴 메시지보다 짧고 자연스러운 말이 좋아. 상대가 답하기 쉬운 문장으로 시작해봐.`,
@@ -1220,27 +1442,67 @@ function makeTopicLines(topic) {
   ];
 }
 
-function makeSajuScore(f) {
-  return clamp(55 + (makeSeed({ a: f.myYear, b: f.partnerYear, c: f.myMonth, d: f.partnerMonth, e: f.metMonth }, false) % 42));
+function makeSajuScore(form) {
+  return clamp(
+    55 +
+      (makeSeed(
+        {
+          a: form.myYear,
+          b: form.partnerYear,
+          c: form.myMonth,
+          d: form.partnerMonth,
+          e: form.metMonth,
+        },
+        false
+      ) %
+        42)
+  );
 }
 
-function makeMbtiScore(f) {
-  const pairs = `${f.myMbti}-${f.partnerMbti}`;
-  const good = ["ENFP-INFJ","INFJ-ENFP","ENTP-INFJ","INFJ-ENTP","INFP-ENFJ","ENFJ-INFP","ISTJ-ESFP","ESFP-ISTJ"];
-  return clamp((good.includes(pairs) ? 82 : 61) + (makeSeed({ m: f.myMbti, p: f.partnerMbti }, false) % 18));
+function makeMbtiScore(form) {
+  const pair = `${form.myMbti}-${form.partnerMbti}`;
+  const goodPairs = [
+    "ENFP-INFJ",
+    "INFJ-ENFP",
+    "ENTP-INFJ",
+    "INFJ-ENTP",
+    "INFP-ENFJ",
+    "ENFJ-INFP",
+    "ISTJ-ESFP",
+    "ESFP-ISTJ",
+  ];
+
+  return clamp(
+    (goodPairs.includes(pair) ? 82 : 61) +
+      (makeSeed(
+        {
+          my: form.myMbti,
+          partner: form.partnerMbti,
+        },
+        false
+      ) %
+        18)
+  );
 }
 
 function makeSajuData(form, score) {
   const myTable = buildSimpleSajuTable(form.myYear, form.myMonth, form.myDay, form.myBirthHour);
-  const partnerTable = buildSimpleSajuTable(form.partnerYear, form.partnerMonth, form.partnerDay, form.partnerBirthHour);
+  const partnerTable = buildSimpleSajuTable(
+    form.partnerYear,
+    form.partnerMonth,
+    form.partnerDay,
+    form.partnerBirthHour
+  );
 
   return {
     myTable,
     partnerTable,
-    summary: score >= 80
-      ? "끌림과 안정이 같이 있는 조합. 다만 속도 조절이 중요해."
-      : "끌림은 있지만 표현 방식이 달라 조율이 필요한 조합.",
-    event: "둘은 사소한 연락 타이밍이나 약속 방식 때문에 서운함이 생길 수 있어. 그런데 이걸 피하지 않고 풀면 오히려 관계가 깊어지는 흐름이 있어.",
+    summary:
+      score >= 80
+        ? "끌림과 안정이 같이 있는 조합. 다만 속도 조절이 중요해."
+        : "끌림은 있지만 표현 방식이 달라 조율이 필요한 조합.",
+    event:
+      "둘은 사소한 연락 타이밍이나 약속 방식 때문에 서운함이 생길 수 있어. 그런데 이걸 피하지 않고 풀면 오히려 관계가 깊어지는 흐름이 있어.",
     freeLines: [
       `이 궁합은 **일주와 월주의 흐름**을 같이 봐야 해. 처음 끌림보다 실제로 편하게 지낼 수 있는지가 더 중요해.`,
       `한쪽은 마음이 생기면 확인하고 싶어지고, 다른 한쪽은 충분히 관찰한 뒤 움직이려는 흐름이 있어.`,
@@ -1271,23 +1533,29 @@ function buildSimpleSajuTable(year, month, day, hour) {
 
   const seed = y * 10000 + m * 100 + d + h;
 
-  const top = [3, 2, 1, 0].map((x) => ({
-    char: stems[mod(seed + x, 10)],
-    kr: stemKr[mod(seed + x, 10)],
-    tone: ["green","green","red","red","yellow","yellow","white","white","dark","dark"][mod(seed + x, 10)],
-  }));
+  const top = [3, 2, 1, 0].map((offset) => {
+    const index = mod(seed + offset, 10);
+    return {
+      char: stems[index],
+      kr: stemKr[index],
+      tone: ["green","green","red","red","yellow","yellow","white","white","dark","dark"][index],
+    };
+  });
 
-  const bottom = [3, 2, 1, 0].map((x) => ({
-    char: branches[mod(seed + x, 12)],
-    kr: branchKr[mod(seed + x, 12)],
-    tone: ["dark","yellow","green","green","yellow","red","red","yellow","white","white","yellow","dark"][mod(seed + x, 12)],
-  }));
+  const bottom = [3, 2, 1, 0].map((offset) => {
+    const index = mod(seed + offset, 12);
+    return {
+      char: branches[index],
+      kr: branchKr[index],
+      tone: ["dark","yellow","green","green","yellow","red","red","yellow","white","white","yellow","dark"][index],
+    };
+  });
 
   return {
     top,
     bottom,
-    topGods: top.map((_, i) => gods[mod(seed + i, 10)]),
-    bottomGods: bottom.map((_, i) => gods[mod(seed + i + 4, 10)]),
+    topGods: top.map((_, index) => gods[mod(seed + index, 10)]),
+    bottomGods: bottom.map((_, index) => gods[mod(seed + index + 4, 10)]),
   };
 }
 
@@ -1296,15 +1564,28 @@ function makeMbtiData(form, score) {
   const partner = form.partnerMbti || "모름";
 
   return {
-    summary: score >= 80
-      ? "서로 다른 점이 매력으로 작동하기 쉬운 조합."
-      : "끌림은 있지만 대화 방식 조율이 필요한 조합.",
+    summary:
+      score >= 80
+        ? "서로 다른 점이 매력으로 작동하기 쉬운 조합."
+        : "끌림은 있지만 대화 방식 조율이 필요한 조합.",
     event: `${my}와 ${partner}는 대화가 잘 풀릴 때 빠르게 가까워지지만, 답장 텀이나 말투 하나로 분위기가 바뀔 수 있어.`,
     rows: [
-      { label: "내 성향", value: `${my}: 감정 표현과 관계 속도` },
-      { label: "상대 성향", value: `${partner}: 안정감을 느끼는 방식` },
-      { label: "끌림 포인트", value: "서로 다른 점이 호기심으로 작동" },
-      { label: "충돌 포인트", value: "연락 텀, 말투, 서운함을 푸는 속도" },
+      {
+        label: "내 성향",
+        value: `${my}: 감정 표현과 관계 속도`,
+      },
+      {
+        label: "상대 성향",
+        value: `${partner}: 안정감을 느끼는 방식`,
+      },
+      {
+        label: "끌림 포인트",
+        value: "서로 다른 점이 호기심으로 작동",
+      },
+      {
+        label: "충돌 포인트",
+        value: "연락 텀, 말투, 서운함을 푸는 속도",
+      },
     ],
     lines: [
       `${my}와 ${partner}의 궁합은 사주가 아니라 **성향 차이**로 봐야 해. 핵심은 감정 표현 속도와 갈등 처리 방식이야.`,
@@ -1316,20 +1597,70 @@ function makeMbtiData(form, score) {
   };
 }
 
-function makeFeaturePrompt(key, f) {
-  const base = {
-    birthday: `${f.name || "인물"}의 생일 ${f.birth || "생년월일"}을 중심으로 지하철 대형 전광판 광고처럼 보이는 생일 축하 이미지. 파스텔 하늘, 구름, 반짝이는 조명, HAPPY BIRTHDAY 타이포그래피, 한국어 축하 문구, 고급 팬 광고 느낌. 업로드한 인물 사진의 얼굴 특징을 자연스럽게 유지.`,
-    animal: `업로드한 커플 사진의 포즈와 옷을 유지하면서 두 사람을 세련된 의인화 고양이 커플로 변환. 실제 사진 같은 질감, 거울셀카, 스트릿 패션, SNS 바이럴 감성. 얼굴 위치와 분위기는 유지하고 과하게 왜곡하지 않기.`,
-    young: `업로드한 인물 또는 커플 사진을 어린 시절 분위기로 변환. 얼굴 특징 유지, 동글한 얼굴, 맑은 눈, 파란 배경, 귀여운 사진관 콘셉트. 실제 어린 시절 사진처럼 자연스럽고 사랑스럽게.`,
-    comic: `업로드한 커플 사진을 일본 순정만화 표지처럼 변환. 반짝이는 눈, 벚꽃 조명, 로맨틱한 구도, 고급 웹툰 표지 느낌. 인물의 포즈와 관계 분위기를 유지.`,
-    travel: `${f.place || "여행지"} 사진을 감성 브이로그 콜라주처럼 구성. 필름 질감, 햇빛 번짐, 8~12장 프레임, 개인적인 여행 기록 느낌. 업로드 사진을 중심 이미지로 사용하고 주변을 여행 앨범처럼 꾸미기.`,
-    color: `${f.name || "사용자"}의 얼굴 사진 기반 퍼스널컬러 리포트. 피부톤, 베스트 컬러, 워스트 컬러, 메이크업 가이드, 고급 카드형 UI. 업로드한 얼굴을 자연스럽게 유지하고 깔끔한 리포트 디자인으로 구성.`,
-    hair: `${f.name || "사용자"}의 얼굴형 기반 헤어스타일 추천 리포트. 추천 헤어 3가지, 앞머리, 기장, 볼륨, 컬러 팁 포함. 업로드한 얼굴을 기준으로 자연스러운 헤어 스타일 제안 카드 만들기.`,
-    palm: `${f.name || "사용자"}의 손바닥 사진 기반 손금 분석 리포트. 생명선, 두뇌선, 감정선, 운명선, 태양선 표시. 미니멀 고급 리포트. 손바닥 선이 잘 보이도록 정리하고 카드형 분석 디자인으로 구성.`,
+function makeFeaturePrompt(key, form) {
+  const prompts = {
+    birthday: `
+업로드한 인물 사진을 활용해서 생일 ${form.birthday} 기념 지하철 대형 전광판 광고처럼 보이는 이미지를 만든다.
+파스텔 하늘, 부드러운 구름, 반짝이는 조명, HAPPY BIRTHDAY 타이포그래피, 한국어 축하 문구, 고급 팬 광고 느낌.
+업로드한 인물의 얼굴 특징과 분위기를 자연스럽게 유지한다.
+실제 지하철역 생일 광고판처럼 완성도 있게 구성한다.
+`.trim(),
+
+    animal: `
+업로드한 사진의 포즈, 옷, 구도, 분위기를 최대한 유지하면서 인물을 세련된 의인화 고양이 또는 동물상 캐릭터로 변환한다.
+실제 사진 같은 질감, 스트릿 패션, 자연스러운 조명, SNS 바이럴 감성.
+얼굴 위치와 인물 간 거리감은 유지하고 과하게 왜곡하지 않는다.
+귀엽지만 저렴한 만화체가 아니라 고급스럽고 공유하고 싶은 결과물로 만든다.
+`.trim(),
+
+    young: `
+업로드한 인물 사진을 어린 시절 분위기로 변환한다.
+얼굴 특징은 유지하되 동글한 얼굴, 맑은 눈, 부드러운 피부, 밝은 파란 배경, 귀여운 사진관 콘셉트로 만든다.
+실제 어린 시절 사진처럼 자연스럽고 사랑스럽게 표현한다.
+과장된 필터 느낌이 아니라 고급 사진관 결과물처럼 만든다.
+`.trim(),
+
+    comic: `
+업로드한 사진을 일본 순정만화 표지처럼 변환한다.
+반짝이는 눈, 부드러운 피부 표현, 벚꽃 조명, 로맨틱한 구도, 고급 웹툰 표지 느낌.
+인물의 포즈와 관계 분위기를 유지한다.
+실사 원본의 감정선을 살린 로맨틱한 포스터 이미지로 만든다.
+`.trim(),
+
+    travel: `
+업로드한 사진을 ${form.place || "여행지"} 감성 브이로그 콜라주처럼 구성한다.
+필름 질감, 햇빛 번짐, 여러 장의 프레임, 개인적인 여행 기록 느낌.
+업로드 사진을 중심으로 여행 앨범처럼 꾸민다.
+모바일에서 저장하고 공유하기 좋은 고급 콜라주 이미지로 만든다.
+`.trim(),
+
+    color: `
+업로드한 얼굴 사진 기반 퍼스널컬러 리포트 이미지를 만든다.
+피부톤, 베스트 컬러, 워스트 컬러, 메이크업 가이드, 어울리는 분위기 키워드가 보이는 고급 카드형 UI.
+얼굴은 자연스럽게 유지하고 깔끔한 리포트 디자인으로 구성한다.
+흰색과 크림색 배경, 둥근 카드, 컬러 팔레트가 잘 보이게 만든다.
+`.trim(),
+
+    hair: `
+업로드한 얼굴 사진 기반 헤어스타일 추천 리포트 이미지를 만든다.
+추천 헤어 3가지, 앞머리, 기장, 볼륨, 컬러 팁이 보이는 고급 미용실 상담 리포트 스타일.
+업로드한 얼굴형을 기준으로 자연스러운 헤어 스타일 제안 카드로 구성한다.
+실제 미용실 상담 자료처럼 깔끔하고 믿을 만한 느낌으로 만든다.
+`.trim(),
+
+    palm: `
+업로드한 손바닥 사진 기반 손금 분석 리포트 이미지를 만든다.
+생명선, 두뇌선, 감정선, 운명선, 태양선을 얇은 선으로 표시한다.
+손바닥 선이 잘 보이도록 정리하고 미니멀한 고급 카드형 분석 디자인으로 구성한다.
+흰 배경, 얇은 선, 둥근 카드, 깔끔한 설명 영역을 포함한다.
+`.trim(),
   };
 
-  return `${base[key]}
-추가 요청: ${f.memo || "없음"}
-장소/분위기: ${f.place || "따뜻하고 고급스러운 분위기"}
-모바일 공유용 고화질 이미지, 깔끔하고 비싼 느낌, 과한 왜곡 없이 자연스럽게.`;
+  return `
+${prompts[key]}
+모바일 공유용 고화질 이미지.
+깔끔하고 비싼 느낌.
+과한 왜곡 없이 자연스럽게.
+사용자는 프롬프트를 보지 않고 완성 이미지만 보게 된다.
+`.trim();
 }
